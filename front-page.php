@@ -29,6 +29,37 @@ get_header();
     #wpsr-reviews-grid-1266 {
         display: none
     }
+
+    /* Custom Swiper Buttons - Arrows Only */
+    .swiper-button-next,
+    .swiper-button-prev {
+        background-color: transparent !important;
+        width: auto !important;
+        height: auto !important;
+        box-shadow: none !important;
+        color: #333 !important;
+        transition: all 0.3s ease;
+    }
+
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 30px !important;
+        /* Ukuran panah sedikit diperbesar karena tanpa lingkaran */
+        font-weight: bold;
+    }
+
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+        background-color: transparent !important;
+        color: #b40304 !important;
+        /* Berubah warna menjadi merah saat di-hover */
+        transform: scale(1.2);
+        /* Sedikit efek membesar saat di-hover */
+    }
+
+    .swiper-container {
+        padding: 0 40px;
+    }
 </style>
 
 <!-- Swiper CSS -->
@@ -66,11 +97,11 @@ if (have_posts()):
             <h2 style="color: black; text-align: center; margin-top: 20px; color: #111111; font-weight: bold;">Reviews of Golden
                 Monkey Ubud</h2><br />
             <div class="swiper-container swiper">
-                <div class="swiper-wrapper">
+                <div class="swiper-wrapper mb-5">
                     <?php echo do_shortcode('[wp_social_ninja id="1266" platform="reviews"]'); ?>
                 </div>
                 <!-- Add Pagination -->
-                <div class="swiper-pagination" style="bottom: 0;"></div>
+                <div class="swiper-pagination"></div>
                 <!-- Add Navigation (Optional) -->
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
