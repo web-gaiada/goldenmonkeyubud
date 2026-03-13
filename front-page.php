@@ -62,7 +62,7 @@ if (have_posts()):
         get_template_part('template-parts/footer', 'section');
         ?>
 
-        <div style="margin-top: 50px;">
+        <div class="container" style="margin-top: 50px;">
             <h2 style="color: black; text-align: center; margin-top: 20px; color: #111111; font-weight: bold;">Reviews of Golden
                 Monkey Ubud</h2><br />
             <div class="swiper-container swiper">
@@ -79,34 +79,33 @@ if (have_posts()):
         <br />
         <br />
 
-        <div class="container py-5">
-            <h2 class="text-center fw-bold mb-4" style="color: #111111;">Find Us</h2>
-            <!-- Map Tabs -->
-            <ul class="nav nav-tabs justify-content-center mb-4 border-0" id="mapTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active fw-bold text-uppercase px-4" id="map-ubud-tab" data-bs-toggle="tab"
-                        data-bs-target="#map-ubud-content" type="button" role="tab" aria-controls="map-ubud-content"
-                        aria-selected="true">Ubud</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link fw-bold text-uppercase px-4" id="map-sanur-tab" data-bs-toggle="tab"
-                        data-bs-target="#map-sanur-content" type="button" role="tab" aria-controls="map-sanur-content"
-                        aria-selected="false">Sanur</button>
-                </li>
-            </ul>
+        <div class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center fw-bold mb-5" style="color: #111111;">Find Us</h2>
+                <!-- Map Tabs (Centered in Container) -->
+                <ul class="nav nav-pills justify-content-center mb-5" id="mapTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active px-5 py-3 fw-bold text-uppercase rounded-0 border" id="map-ubud-tab"
+                            data-bs-toggle="pill" data-bs-target="#map-ubud-content" type="button" role="tab"
+                            aria-controls="map-ubud-content" aria-selected="true">Ubud</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link px-5 py-3 fw-bold text-uppercase rounded-0 border" id="map-sanur-tab"
+                            data-bs-toggle="pill" data-bs-target="#map-sanur-content" type="button" role="tab"
+                            aria-controls="map-sanur-content" aria-selected="false">Sanur</button>
+                    </li>
+                </ul>
+            </div>
 
+            <!-- Map Content (Full Width / Edge-to-Edge) -->
             <div class="tab-content" id="mapTabContent">
                 <div class="tab-pane fade show active" id="map-ubud-content" role="tabpanel" aria-labelledby="map-ubud-tab">
-                    <div class="ratio ratio-21x9">
+                    <div class="ratio ratio-21x9 shadow-sm">
                         <?php echo get_field('google_maps_embed_ubud', 'option'); ?>
-                        <!-- <iframe title="GMubudmaps"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.887680897033!2d115.26138147525975!3d-8.510285491531763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd23d6c77c9d63f%3A0x93f2d70599d31eb!2sGolden%20Monkey%20Ubud!5e0!3m2!1sen!2sid!4v1731478220138!5m2!1sen!2sid"
-                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe> -->
                     </div>
                 </div>
                 <div class="tab-pane fade" id="map-sanur-content" role="tabpanel" aria-labelledby="map-sanur-tab">
-                    <div class="ratio ratio-21x9">
+                    <div class="ratio ratio-21x9 shadow-sm">
                         <?php echo get_field('google_maps_embed_sanur', 'option'); ?>
                     </div>
                 </div>
@@ -115,15 +114,16 @@ if (have_posts()):
 
         <style>
             #mapTab .nav-link {
-                color: #666;
-                border: none;
-                border-bottom: 3px solid transparent;
+                color: #000;
+                background-color: #fff;
+                border-color: #dee2e6 !important;
+                transition: all 0.3s ease;
             }
 
             #mapTab .nav-link.active {
-                color: #b40304;
-                background: transparent;
-                border-bottom: 3px solid #b40304;
+                background-color: #b40304 !important;
+                color: #fff !important;
+                border-color: #b40304 !important;
             }
 
             .ratio-21x9 {
