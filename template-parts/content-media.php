@@ -9,35 +9,38 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class('col-12 col-md-6 col-lg-4'); ?>>
-    <div class="delivery-card-container position-relative bg-dark d-flex align-items-end" style="height: 350px;">
-        <!-- Header Content & Overlay -->
-        <div class="delivery-card-content p-4 p-lg-5 w-100">
-            <header class="entry-header">
-                <?php the_title('<h2 class="h4 fw-bold mb-3"><a href="' . esc_url(get_permalink()) . '" rel="bookmark" class="stretched-link text-white text-decoration-none">', '</a></h2>'); ?>
-            </header>
+    <a href="<?php echo esc_url(get_permalink()); ?>" class="text-decoration-none">
+        <div class="delivery-card-container position-relative bg-dark d-flex align-items-end" style="height: 350px;">
+            
+            <!-- Header Content & Overlay -->
+            <div class="delivery-card-content p-4 p-lg-5 w-100">
+                <header class="entry-header">
+                    <h2 class="h4 fw-bold mb-3 text-white"><?php the_title(); ?></h2>
+                </header>
 
-            <?php if (get_field('intro_text')): ?>
-                <div class="entry-content text-white-50 small mb-0 d-none d-sm-block">
-                    <?php
-                    $intro = get_field('intro_text');
-                    echo wp_trim_words($intro, 15, '...');
-                    ?>
-                </div>
+                <?php if (get_field('intro_text')): ?>
+                    <div class="entry-content text-white-50 small mb-0 d-none d-sm-block">
+                        <?php
+                        $intro = get_field('intro_text');
+                        echo wp_trim_words($intro, 15, '...');
+                        ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+
+            <!-- Featured Image -->
+            <?php if (has_post_thumbnail()): ?>
+                <?php the_post_thumbnail('large', array('class' => 'img-cover position-absolute top-0 start-0 w-100 h-100 object-fit-cover')); ?>
+            <?php else: ?>
+                <div class="img-cover position-absolute top-0 start-0 w-100 h-100 bg-secondary opacity-25"></div>
             <?php endif; ?>
-        </div>
 
-        <!-- Featured Image -->
-        <?php if (has_post_thumbnail()): ?>
-            <?php the_post_thumbnail('large', array('class' => 'img-cover position-absolute top-0 start-0 w-100 h-100 object-fit-cover')); ?>
-        <?php else: ?>
-            <div class="img-cover position-absolute top-0 start-0 w-100 h-100 bg-secondary opacity-25"></div>
-        <?php endif; ?>
-
-        <!-- Subtle Gradient Overlay -->
-        <div class="position-absolute top-0 start-0 w-100 h-100"
-            style="background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%); z-index: 1;">
+            <!-- Subtle Gradient Overlay -->
+            <div class="position-absolute top-0 start-0 w-100 h-100"
+                style="background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%); z-index: 1;">
+            </div>
         </div>
-    </div>
+    </a>
 </article>
 
 <style>
@@ -48,6 +51,7 @@
         cursor: pointer;
     }
 
+    /* Hover State on the Container */
     .delivery-card-container:hover {
         transform: translateY(-4px);
         box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
@@ -69,14 +73,14 @@
         z-index: 2;
     }
 
-    .entry-title a {
+    .entry-header h2 {
         position: relative;
         display: inline-block;
         transition: color 0.3s ease;
     }
 
     /* Red Accent Line Under Title */
-    .entry-title a::after {
+    .entry-header h2::after {
         content: '';
         position: absolute;
         bottom: -5px;
@@ -87,13 +91,13 @@
         transition: width 0.3s ease;
     }
 
-    .delivery-card-container:hover .entry-title a::after {
+    /* Trigger line on container hover */
+    .delivery-card-container:hover .entry-header h2::after {
         width: 40px;
-        /* Garis merah muncul perlahan */
     }
 
-    .delivery-card-container:hover .entry-title a {
-        color: #fff !important;
-        /* Judul tetap putih agar elegan */
+    /* Ensure text color stays white and doesn't get default link color */
+    .text-decoration-none, .text-decoration-none:hover {
+        text-decoration: none !important;
     }
 </style>

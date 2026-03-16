@@ -14,7 +14,7 @@ get_header();
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-lg-10 text-center mb-5">
-            <h2 class="fw-bold text-uppercase mb-4">Contact Us</h2>
+            <!-- <h2 class="fw-bold text-uppercase mb-4">Contact Us</h2> -->
             <p class="fs-5 text-muted"><?php echo get_field('footer_title'); ?></p>
         </div>
 
@@ -73,7 +73,7 @@ get_header();
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-12 col-lg-10 text-brand">
-                                <?php echo do_shortcode('[contact-form-7 id="31b3b41" title="Contact Form - Ubud"]'); ?>
+                                <?php echo do_shortcode(get_field('shortcode_contact_form_ubud')); ?>
                             </div>
                         </div>
                     </div>
@@ -120,7 +120,12 @@ get_header();
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-12 col-lg-10 text-brand">
-                                <?php echo do_shortcode('[contact-form-7 id="5baa930" title="Contact Form - Sanur"]'); ?>
+                                <?php
+                                $shortcode_sanur = get_field('shortcode_contact_form_sanur');
+                                if ($shortcode_sanur) {
+                                    echo do_shortcode($shortcode_sanur);
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>
