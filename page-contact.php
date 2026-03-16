@@ -35,7 +35,7 @@ get_header();
             <div class="tab-content" id="contactTabContent">
                 <!-- Ubud Contact Info -->
                 <div class="tab-pane fade show active" id="contact-ubud" role="tabpanel">
-                    <div class="row gy-4">
+                    <div class="row gy-4 mb-5">
                         <div class="col-md-6">
                             <div class="card h-100 border-0 shadow-sm bg-light p-4 p-md-5">
                                 <h4 class="fw-bold mb-4 text-uppercase">Golden Monkey Ubud</h4>
@@ -63,11 +63,25 @@ get_header();
                             </div>
                         </div>
                     </div>
+
+                    <!-- Form Ubud -->
+                    <div class="mt-5 pt-5 border-top">
+                        <div class="text-center mb-5">
+                            <h3 class="fw-bold text-uppercase">Send us a Message (Ubud)</h3>
+                            <p class="text-muted">Have a question or feedback for our Ubud location? We'd love to hear
+                                from you.</p>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-lg-10 text-brand">
+                                <?php echo do_shortcode('[contact-form-7 id="31b3b41" title="Contact Form - Ubud"]'); ?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Sanur Contact Info -->
                 <div class="tab-pane fade" id="contact-sanur" role="tabpanel">
-                    <div class="row gy-4">
+                    <div class="row gy-4 mb-5">
                         <div class="col-md-6">
                             <div class="card h-100 border-0 shadow-sm bg-light p-4 p-md-5">
                                 <h4 class="fw-bold mb-4 text-uppercase">Golden Monkey Sanur</h4>
@@ -96,23 +110,21 @@ get_header();
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Contact Form Section -->
-            <div class="mt-5 pt-5 border-top">
-                <div class="text-center mb-5">
-                    <h3 class="fw-bold text-uppercase">Send us a Message</h3>
-                    <p class="text-muted">Have a question or feedback? We'd love to hear from you.</p>
+                    <!-- Form Sanur -->
+                    <div class="mt-5 pt-5 border-top">
+                        <div class="text-center mb-5">
+                            <h3 class="fw-bold text-uppercase">Send us a Message (Sanur)</h3>
+                            <p class="text-muted">Have a question or feedback for our Sanur location? We'd love to hear
+                                from you.</p>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-lg-10 text-brand">
+                                <?php echo do_shortcode('[contact-form-7 id="5baa930" title="Contact Form - Sanur"]'); ?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <main id="primary">
-                    <?php
-                    while (have_posts()):
-                        the_post();
-                        get_template_part('template-parts/content', 'contact');
-                    endwhile;
-                    ?>
-                </main>
             </div>
         </div>
     </div>
