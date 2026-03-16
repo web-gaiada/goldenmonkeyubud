@@ -110,17 +110,41 @@
       background: #b40304;
       color: #fff !important;
       border: 1px solid #b40304;
+      transition: all 0.3s ease;
+    }
+
+    .btn-nav-reserve:hover,
+    .btn-nav-reserve.active {
+      background: #fff !important;
+      color: #b40304 !important;
+      border-color: #b40304 !important;
+      /* transform: translateY(-2px); */
     }
 
     .btn-nav-delivery {
       background: transparent;
       color: #fff !important;
       border: 1px solid #fff;
+      transition: all 0.3s ease;
+    }
+
+    .btn-nav-delivery:hover,
+    .btn-nav-delivery.active {
+      background: #b40304 !important;
+      color: #fff !important;
+      border-color: #b40304 !important;
+      /* transform: translateY(-2px); */
     }
 
     .main-navbar.scrolled .btn-nav-delivery {
       color: #111 !important;
       border-color: #111;
+    }
+
+    .main-navbar.scrolled .btn-nav-delivery.active {
+      color: #fff !important;
+      background: #b40304 !important;
+      border-color: #b40304 !important;
     }
 
     /* Mobile Adjustments (THE FIX) */
@@ -287,11 +311,11 @@
             <!-- Action Buttons -->
             <li class="nav-item ms-lg-4 mt-4 mt-lg-0">
               <a href="<?php echo esc_url(home_url('/delivery/')); ?>"
-                class="btn nav-cta btn-nav-delivery d-block d-lg-inline-block">Delivery</a>
+                class="btn nav-cta btn-nav-delivery d-block d-lg-inline-block <?php echo is_page('delivery') ? 'active' : ''; ?>">Delivery</a>
             </li>
             <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
               <a href="<?php echo esc_url(home_url('/reservations/')); ?>"
-                class="btn nav-cta btn-nav-reserve d-block d-lg-inline-block">Reservations</a>
+                class="btn nav-cta btn-nav-reserve d-block d-lg-inline-block <?php echo is_page('reservations') ? 'active' : ''; ?>">Reservations</a>
             </li>
           </ul>
         </div>
