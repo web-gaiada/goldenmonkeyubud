@@ -1,6 +1,6 @@
 <?php $i = get_field('count'); ?>
 <?php if (have_rows('article_list')): ?>
-    <div class="container py-lg-5">
+    <div class="container py-5">
         <?php $count = $i; ?>
         <?php while (have_rows('article_list')):
             the_row(); ?>
