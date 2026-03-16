@@ -8,6 +8,12 @@
  */
 
 get_header();
+
+// Fetch map data from options
+$map_ubud = get_field('google_maps_embed_ubud', 'option');
+$map_sanur = get_field('google_maps_embed_sanur', 'option');
+$map_title = get_field('map_title', 'option') ?: 'Visit Us';
+$map_subtitle = get_field('map_subtitle', 'option');
 ?>
 <?php get_template_part('template-parts/content', 'header'); ?>
 
@@ -36,15 +42,18 @@ get_header();
                 <!-- Ubud Reservation Content -->
                 <div class="tab-pane fade show active" id="res-ubud-content" role="tabpanel"
                     aria-labelledby="res-ubud-tab">
-                    <div class="card border-0 shadow-sm p-4 p-md-5 bg-light text-center">
+                    <div class="card border-0 shadow-sm p-4 p-md-5 bg-light text-center mb-5">
                         <h4 class="fw-bold mb-4">Golden Monkey Ubud Reservation</h4>
                         <p class="mb-5 lead">Book your table at our Ubud location for an authentic Chinese dining
                             experience.</p>
 
                         <?php if (get_field('reservation_url_ubud', 'option')): ?>
-                            <div class="ratio ratio-16x9 bg-white shadow-sm rounded mb-4" style="min-height: 600px;">
-                                <iframe src="<?php echo get_field('reservation_url_ubud', 'option'); ?>" frameborder="0"
-                                    style="width:100%; height:100%; border:none;"></iframe>
+                            <div class="reservation-form-container bg-white shadow-sm rounded mb-4 overflow-hidden">
+                                <iframe src="<?php echo get_field('reservation_url_ubud', 'option'); ?>" 
+                                    frameborder="0"
+                                    scrolling="auto"
+                                    class="resdiary-iframe"
+                                    style="width:100%; min-height: 850px; border:none; display: block;"></iframe>
                             </div>
                             <div class="mt-4">
                                 <a href="<?php echo get_field('reservation_url_ubud', 'option'); ?>" target="_blank"
@@ -55,19 +64,40 @@ get_header();
                             <div class="alert alert-info">Reservation link for Ubud is not set yet.</div>
                         <?php endif; ?>
                     </div>
+
+                    <!-- Map for Ubud -->
+                    <div class="mt-5 pt-5 border-top text-center">
+                        <h3 class="mb-4 fw-bold"><?php echo $map_title; ?> - Ubud</h3>
+                        <?php if($map_subtitle): ?>
+                            <p class="fs-5"><?php echo $map_subtitle; ?></p>
+                        <?php endif; ?>
+                        <div class="ratio ratio-21x9 shadow-sm rounded border overflow-hidden bg-light">
+                            <?php if($map_ubud): ?>
+                                <?php echo $map_ubud; ?>
+                            <?php else: ?>
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15783.550723239068!2d115.2639564!3d-8.5102855!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd23d6c77c9d63f%3A0x93f2d70599d31eb!2sGolden%20Monkey%20Ubud!5e0!3m2!1sen!2sid!4v1711952888959!5m2!1sen!2sid"
+                                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <?php endif; ?>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Sanur Reservation Content -->
                 <div class="tab-pane fade" id="res-sanur-content" role="tabpanel" aria-labelledby="res-sanur-tab">
-                    <div class="card border-0 shadow-sm p-4 p-md-5 bg-light text-center">
+                    <div class="card border-0 shadow-sm p-4 p-md-5 bg-light text-center mb-5">
                         <h4 class="fw-bold mb-4">Golden Monkey Sanur Reservation</h4>
                         <p class="mb-5 lead">Experience our signature Cantonese dishes at our vibrant Sanur restaurant.
                         </p>
 
                         <?php if (get_field('reservation_url_sanur', 'option')): ?>
-                            <div class="ratio ratio-16x9 bg-white shadow-sm rounded mb-4" style="min-height: 600px;">
-                                <iframe src="<?php echo get_field('reservation_url_sanur', 'option'); ?>" frameborder="0"
-                                    style="width:100%; height:100%; border:none;"></iframe>
+                            <div class="reservation-form-container bg-white shadow-sm rounded mb-4 overflow-hidden">
+                                <iframe src="<?php echo get_field('reservation_url_sanur', 'option'); ?>" 
+                                    frameborder="0"
+                                    scrolling="auto"
+                                    class="resdiary-iframe"
+                                    style="width:100%; min-height: 850px; border:none; display: block;"></iframe>
                             </div>
                             <div class="mt-4">
                                 <a href="<?php echo get_field('reservation_url_sanur', 'option'); ?>" target="_blank"
@@ -78,13 +108,24 @@ get_header();
                             <div class="alert alert-info">Reservation link for Sanur is not set yet.</div>
                         <?php endif; ?>
                     </div>
+
+                    <!-- Map for Sanur -->
+                    <div class="mt-5 pt-5 border-top text-center">
+                        <h3 class="mb-4 fw-bold"><?php echo $map_title; ?> - Sanur</h3>
+                        <?php if($map_subtitle): ?>
+                            <p class="fs-5"><?php echo $map_subtitle; ?></p>
+                        <?php endif; ?>
+                        <div class="ratio ratio-21x9 shadow-sm rounded border overflow-hidden bg-light">
+                            <?php if($map_sanur): ?>
+                                <?php echo $map_sanur; ?>
+                            <?php else: ?>
+                                <div class="alert alert-info">Map for Sanur is not set yet.</div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="mt-5 pt-5 border-top">
-        <?php get_template_part('template-parts/about', 'map'); ?>
     </div>
 </div>
 
@@ -105,6 +146,26 @@ get_header();
     .lead {
         color: #555;
         font-size: 1.1rem;
+    }
+
+    /* Target specific iframes if needed */
+    .ratio iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .reservation-form-container {
+        position: relative;
+        width: 100%;
+        background: #fff;
+    }
+
+    /* Mobile specific adjustments for iframe height if necessary */
+    @media (max-width: 768px) {
+        .resdiary-iframe {
+            min-height: 1000px !important;
+        }
     }
 </style>
 <?php get_template_part('template-parts/footer', 'banner'); ?>
