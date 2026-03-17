@@ -1,15 +1,22 @@
 <?php $i = get_field('count'); ?>
 <?php if (have_rows('article_list')): ?>
     <div class="container py-5">
-        <?php $count = $i; ?>
+        <?php
+        $count = $i;
+        $n = 0;
+        ?>
         <?php while (have_rows('article_list')):
             the_row(); ?>
+            <?php
+            $x = $n++;
+            ?>
             <?php if (get_sub_field('layout_option') == 'Two Column'): ?>
-                <div class="row gx-0 bg-second-brand mb-5 overflow-hidden border-0">
+                <div
+                    class="opoiki row gx-0 bg-second-brand <?php if ($x < $i): ?>mb-5<?php else: ?>mb-0<?php endif; ?> overflow-hidden border-0">
                     <!-- Text Column -->
                     <div
                         class="col-12 col-lg-6 align-self-center <?php if ($count % 2 == 0): ?>order-2 order-lg-2<?php else: ?>order-2 order-lg-1<?php endif; ?>">
-                        <div class="p-4 p-md-5 <?php if ($count % 2 == 0): ?>ps-lg-5<?php else: ?>pe-lg-5<?php endif; ?>">
+                        <div class="py-4 <?php if ($count % 2 == 0): ?>ps-lg-5<?php else: ?>pe-lg-5<?php endif; ?>">
                             <?php if (get_sub_field('article_title')): ?>
                                 <h2 class="display-6 fw-bold mb-4 text-uppercase" style="letter-spacing: 2px; color: #111;">
                                     <?php the_sub_field('article_title'); ?>
