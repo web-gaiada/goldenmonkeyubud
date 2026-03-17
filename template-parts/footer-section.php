@@ -4,9 +4,10 @@
             <?php if( have_rows('banner') ): ?>            
                 <?php while ( have_rows('banner') ) : the_row(); ?>
                 <div class="col-6 g-1 g-lg-5">
-                    <div class="bg-dark position-relative footer-section-height">
-                        <div class="d-flex h-100 align-items-center text-white featured-text justify-content-center">
-                            <div class="p-3 p-lg-5">
+                    <div class="bg-dark position-relative footer-section-height overflow-hidden">
+                        <img src="<?php bloginfo('template_url'); ?>/images/section-background.jpg" class="img-cover position-absolute top-0 start-0 w-100 h-100" style="z-index: 1;" alt="Chinese Restaurant Ubud">
+                        <div class="d-flex h-100 align-items-center text-white featured-text justify-content-center position-relative" style="z-index: 2;">
+                            <div class="p-3 p-lg-5 text-center">
                                 <a href="<?php bloginfo('url')?><?php the_sub_field('banner_link'); ?>" class="text-white stretched-link">                    
                                 <div class="d-block">
                                     <img src="<?php bloginfo('template_url'); ?>/images/line.svg" class="line-section pb-3 pb-lg-5" alt="Chinese Restaurant Ubud">
@@ -17,16 +18,16 @@
                                 </a>
                             </div>
                         </div>
-                        <img src="<?php bloginfo('template_url'); ?>/images/section-background.jpg" class="img-cover"  alt="Chinese Restaurant Ubud">
                     </div>          
                 </div>            
                 <?php endwhile; ?>
             <?php else: ?>
                 <?php while ( have_rows('banner', 3) ) : the_row(); ?>
                 <div class="col-12 col-lg-4">
-                  <div class="bg-dark position-relative footer-section-height">
-                     <div class="d-flex h-100 align-items-center text-white featured-text justify-content-center">
-                        <div class="p-5">
+                  <div class="bg-dark position-relative footer-section-height overflow-hidden">
+                     <img src="<?php bloginfo('template_url'); ?>/images/section-background.jpg" class="img-cover position-absolute top-0 start-0 w-100 h-100" style="z-index: 1;" alt="Chinese Restaurant Ubud">
+                     <div class="d-flex h-100 align-items-center text-white featured-text justify-content-center position-relative" style="z-index: 2;">
+                        <div class="p-5 text-center">
                            <a href="<?php bloginfo('url')?><?php the_sub_field('banner_link'); ?>" class="text-white stretched-link" aria-label="Banner">               <div class="d-block">
                                 <img src="<?php bloginfo('template_url'); ?>/images/line.svg" class="pb-5" alt="Chinese Restaurant Ubud">
                                     <?php $icon_image = get_sub_field('icon_image'); ?>
@@ -36,7 +37,6 @@
                                 </a>
                             </div>
                         </div>
-                        <img src="<?php bloginfo('template_url'); ?>/images/section-background.jpg" class="img-cover" alt="Chinese Restaurant Ubud">
                     </div>          
                 </div>            
                 <?php endwhile; ?>
