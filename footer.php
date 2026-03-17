@@ -11,79 +11,73 @@
 
 ?>
 
-<style>
-  .bg-red {
-    background-color: #6f0100;
-  }
-
-  .bg-footer {
-    background-color: #6f0100;
-  }
-
-  .title-footer {
-    font-size: 1.5rem;
-    font-weight: 800;
-    text-transform: uppercase;
-  }
-</style>
-
-<div class="bg-footer text-white white-link">
+<div class="bg-footer text-white white-link" style="background-color: #6f0100 !important;">
   <div class="container py-5">
-    <div class="row py-3 py-lg-5 gy-5">
+    <div class="row py-3 py-lg-5 gy-5 text-center text-md-start justify-content-center">
       <div class="col-12 col-lg-8">
-        <div class="row">
+        <div class="row gy-5 gy-md-0">
           <!-- Ubud Location -->
           <div class="col-12 col-md-6 mb-4 mb-md-0">
             <h4 class="text-white title-footer">Golden Monkey Ubud</h4>
             <div class="pe-md-4 address-text">
               <?php echo wpautop(get_field('address_ubud', 'option')); ?>
               <div class="mt-3">
-                <p class="mt-3">
+                <p class="mt-3 fw-bold">
                   <?php echo get_field('operational_hours_ubud', 'option'); ?>
                 </p>
-                <a href="tel:+<?php echo get_field('whatsapp_number_ubud', 'option'); ?>" target=" _blank"
-                  class="text-white d-block mb-2">
-                  Call Us:
-                  <?php echo format_phone_number(get_field('whatsapp_number_ubud', 'option')); ?>
-                </a>
-                <a href="mailto:<?php echo get_field('email_ubud', 'option'); ?>" target="_blank"
-                  class="text-white d-block mb-2">
-                  <?php echo get_field('email_ubud', 'option'); ?>
-                  </>
+                <div class="d-flex flex-column align-items-center align-items-md-start gap-2">
+                  <a href="tel:+<?php echo get_field('whatsapp_number_ubud', 'option'); ?>" target="_blank"
+                    class="text-white footer-contact-link">
+                    <span class="opacity-75">Call Us:</span>
+                    <?php echo format_phone_number(get_field('whatsapp_number_ubud', 'option')); ?>
+                  </a>
+                  <a href="mailto:<?php echo get_field('email_ubud', 'option'); ?>" target="_blank"
+                    class="text-white footer-contact-link">
+                    <?php echo get_field('email_ubud', 'option'); ?>
+                  </a>
                   <a href="<?php echo get_field('google_maps_url_ubud', 'option'); ?>" target="_blank"
-                    class="btn btn-sm btn-outline-light rounded-0 mt-2">Get Directions</a>
+                    class="btn btn-sm btn-outline-light rounded-0 mt-3 px-4">Get Directions</a>
+                </div>
               </div>
             </div>
           </div>
+
+          <div class="col-12 d-md-none">
+            <hr class="opacity-25 border-light">
+          </div>
+
           <!-- Sanur Location -->
           <div class="col-12 col-md-6">
             <h4 class="text-white title-footer">Golden Monkey Sanur</h4>
             <div class="address-text">
               <?php echo wpautop(get_field('address_sanur', 'option')); ?>
               <div class="mt-3">
-                <p class="mt-3">
+                <p class="mt-3 fw-bold">
                   <?php echo get_field('operational_hours_sanur', 'option'); ?>
                 </p>
-                <a href="https://api.whatsapp.com/send/?phone=<?php echo get_field('whatsapp_number_sanur', 'option'); ?>&text=<?php echo urlencode(get_field('whatsapp_text_sanur', 'option')); ?>"
-                  target="_blank" class="text-white d-block mb-2">
-                  Call Us:
-                  <?php echo format_phone_number(get_field('whatsapp_number_sanur', 'option')); ?>
-                </a>
-                <a href="mailto:<?php echo get_field('email_sanur', 'option'); ?>" target="_blank"
-                  class="text-white d-block mb-2">
-                  <?php echo get_field('email_sanur', 'option'); ?>
-                </a>
-                <a href="<?php echo get_field('google_maps_url_sanur', 'option'); ?>" target="_blank"
-                  class="btn btn-sm btn-outline-light rounded-0 mt-2">Get Directions</a>
+                <div class="d-flex flex-column align-items-center align-items-md-start gap-2">
+                  <a href="https://api.whatsapp.com/send/?phone=<?php echo get_field('whatsapp_number_sanur', 'option'); ?>&text=<?php echo urlencode(get_field('whatsapp_text_sanur', 'option')); ?>"
+                    target="_blank" class="text-white footer-contact-link">
+                    <span class="opacity-75">Call Us:</span>
+                    <?php echo format_phone_number(get_field('whatsapp_number_sanur', 'option')); ?>
+                  </a>
+                  <a href="mailto:<?php echo get_field('email_sanur', 'option'); ?>" target="_blank"
+                    class="text-white footer-contact-link">
+                    <?php echo get_field('email_sanur', 'option'); ?>
+                  </a>
+                  <a href="<?php echo get_field('google_maps_url_sanur', 'option'); ?>" target="_blank"
+                    class="btn btn-sm btn-outline-light rounded-0 mt-3 px-4">Get Directions</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-12 col-lg-4">
+
+      <div class="col-12 col-lg-4 footer-certificates">
         <div class="px-lg-4">
-          <h4 class="text-white title-footer">Follow Us</h4>
-          <ul class="list-inline list-social mb-4">
+          <h4 class="text-white title-footer text-center text-lg-start mb-4">Follow Us</h4>
+          <ul class="list-inline list-social mb-4 text-center text-lg-start">
             <li class="list-inline-item">
               <a href="https://www.instagram.com/goldenmonkeyrestaurant/" target="_blank" aria-label="Instagram">
                 <img src="<?php bloginfo('template_url'); ?>/images/instagram-rounded-retangle.svg"
@@ -104,15 +98,16 @@
               </a>
             </li>
           </ul>
-          <img src="<?php bloginfo('template_url'); ?>/images/credit-card.png" alt="Credit Card Payment Gateway"
-            class="mb-2" height="30" width="261">
-          <div>
-            <!--a href="https://chse.kemenparekraf.go.id/detail-tersertifikasi/golden-monkey-chinese-restaurant" target="_blank" aria-label="CHSE KEMENPAREKRAF"><img height="90" width="90" src="https://www.goldenmonkeyubud.com/wp-content/uploads/2022/03/chse-certified.webp" alt="CHSE KEMENPAREKRAF"></a-->
-            <a target="_blank"
-              href="https://www.tripadvisor.com/Restaurant_Review-g297701-d10915653-Reviews-Golden_Monkey-Ubud_Gianyar_Regency_Bali.html"
-              aria-label="Tripadvisor Award"><img height="90" width="90"
-                src="https://www.goldenmonkeyubud.com/wp-content/uploads/2022/03/tripadvisor-award-white.webp"
-                alt="Tripadvisor Award"></a>
+          <div class="text-center text-lg-start">
+            <img src="<?php bloginfo('template_url'); ?>/images/credit-card.png" alt="Credit Card Payment Gateway"
+              class="mb-3" height="30" width="261" style="max-width: 100%; height: auto;">
+            <div class="mt-2">
+              <a target="_blank"
+                href="https://www.tripadvisor.com/Restaurant_Review-g297701-d10915653-Reviews-Golden_Monkey-Ubud_Gianyar_Regency_Bali.html"
+                aria-label="Tripadvisor Award"><img height="90" width="90"
+                  src="https://www.goldenmonkeyubud.com/wp-content/uploads/2022/03/tripadvisor-award-white.webp"
+                  alt="Tripadvisor Award"></a>
+            </div>
           </div>
         </div>
       </div>
@@ -126,7 +121,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="px-4 px-lg-0">
+        <div class="px-4 px-lg-0 text-center text-md-start">
           &copy; <?php bloginfo('name'); ?> <?php echo date('Y'); ?>. <a href="https://www.gaiada.com/" target="_blank"
             aria-label="Developed by Gaia Digital Agency" style="color:#000">Developed by Gaia Digital Agency.</a></div>
       </div>
@@ -134,17 +129,6 @@
   </div>
 </div>
 
-<style>
-  .whatsapp-btn {
-    display: none;
-  }
-
-  @media(min-width: 992px) {
-    .whatsapp-btn {
-      display: block;
-    }
-  }
-</style>
 <div class="position-fixed bottom-0 start-0 end-0 d-lg-none d-none bg-footer">
   <div class="pt-4 pb-2 d-flex justify-content-center">
     <div class="item px-4">

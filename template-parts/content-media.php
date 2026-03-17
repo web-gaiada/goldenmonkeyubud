@@ -11,7 +11,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class('col-12 col-md-6 col-lg-4'); ?>>
     <a href="<?php echo esc_url(get_permalink()); ?>" class="text-decoration-none">
         <div class="delivery-card-container position-relative bg-dark d-flex align-items-end" style="height: 350px;">
-            
+
             <!-- Header Content & Overlay -->
             <div class="delivery-card-content p-4 p-lg-5 w-100">
                 <header class="entry-header">
@@ -97,7 +97,8 @@
     }
 
     /* Ensure text color stays white and doesn't get default link color */
-    .text-decoration-none, .text-decoration-none:hover {
+    .text-decoration-none,
+    .text-decoration-none:hover {
         text-decoration: none !important;
     }
 </style>
