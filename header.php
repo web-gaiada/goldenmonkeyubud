@@ -141,8 +141,10 @@
       border-color: #111;
     }
 
+    .main-navbar.scrolled .btn-nav-delivery:hover,
     .main-navbar.scrolled .btn-nav-delivery.active {
       color: #fff !important;
+      font-weight: 700 !important;
       background: #b40304 !important;
       border-color: #b40304 !important;
     }
