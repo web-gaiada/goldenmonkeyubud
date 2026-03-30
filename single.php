@@ -9,14 +9,25 @@
  */
 
 get_header();
+
+$bg_image = '';
+if (has_post_thumbnail()) {
+	$bg_image = get_the_post_thumbnail_url(get_the_ID(), 'full');
+}
 ?>
 
-<div class="bg-brand h-50">
-	<div class="container h-100">
-		<div class="row py-5 h-100 align-items-center">
+<div class="position-relative d-flex align-items-center justify-content-center bg-brand" style="min-height: 45vh;">
+	<?php if ($bg_image): ?>
+		<img src="<?php echo esc_url($bg_image); ?>" class="position-absolute w-100 h-100 top-0 start-0" style="object-fit: cover; z-index: 0;" alt="<?php echo esc_attr(get_the_title()); ?>">
+		<!-- Overlay gelap agar teks lebih terbaca -->
+		<div class="position-absolute w-100 h-100 top-0 start-0" style="background: rgba(0,0,0,0.5); z-index: 1;"></div>
+	<?php endif; ?>
+	
+	<div class="container position-relative" style="z-index: 2;">
+		<div class="row py-5 align-items-center">
 			<div class="col-12 py-3 py-lg-5 text-center text-white">
 				<div class="mobilespacer d-block d-lg-none"></div>
-				<h1><?php the_title(); ?></h1>
+				<h1 class="fw-bold mb-0" style="text-shadow: 0 2px 10px rgba(0,0,0,0.5);"><?php the_title(); ?></h1>
 			</div>
 		</div>
 	</div>

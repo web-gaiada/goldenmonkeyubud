@@ -11,6 +11,8 @@
 
 <article id="post-<?php the_ID(); ?>">
 
+  <?php get_template_part('template-parts/content', 'intro'); ?>
+
   <div class="container py-5">
     <!-- Tab Navigation -->
     <ul class="nav nav-pills justify-content-center mb-5" id="menuTab" role="tablist">
@@ -35,7 +37,7 @@
               the_row(); ?>
               <div class="col-6 col-lg-3 g-3">
                 <?php $image = get_sub_field('image'); ?>
-                <?php echo wp_get_attachment_image($image, "full", "", array("class" => "img-menu w-100 h-auto")); ?>
+                <?php echo wp_get_attachment_image($image, "full", false, array("class" => "img-menu w-100 h-auto")); ?>
               </div>
             <?php endwhile; ?>
           </div>
@@ -87,7 +89,7 @@
               the_row(); ?>
               <div class="col-6 col-lg-3 g-3">
                 <?php $image = get_sub_field('image'); ?>
-                <?php echo wp_get_attachment_image($image, "full", "", array("class" => "img-menu w-100 h-auto")); ?>
+                <?php echo wp_get_attachment_image($image, "full", false, array("class" => "img-menu w-100 h-auto")); ?>
               </div>
             <?php endwhile; ?>
           </div>
