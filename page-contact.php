@@ -41,13 +41,17 @@ get_header();
                                 <h4 class="fw-bold mb-4 text-uppercase">Golden Monkey Ubud</h4>
                                 <div class="mb-4">
                                     <h6 class="text-muted small fw-bold text-uppercase mb-2">Address</h6>
-                                    <div class="fs-5"><?php echo wpautop(get_field('address_ubud', 'option')); ?></div>
+                                    <div class="fs-5"><a
+                                            href="<?php echo get_field('google_maps_url_ubud', 'option'); ?>"
+                                            class="text-dark fs-5 fw-bold"
+                                            target="_blank"><?php echo wpautop(get_field('address_ubud', 'option')); ?>
+                                        </a></div>
                                 </div>
                                 <div class="mb-4">
                                     <h6 class="text-muted small fw-bold text-uppercase mb-2">WhatsApp Number</h6>
                                     <a href="https://api.whatsapp.com/send/?phone=<?php echo get_field('whatsapp_number_ubud', 'option'); ?>&text=<?php echo urlencode(get_field('whatsapp_text_ubud', 'option')); ?>"
                                         class="text-dark fs-5 fw-bold" target="_blank">
-                                        <?php echo get_field('whatsapp_number_ubud', 'option'); ?>
+                                        <?php echo format_phone_number(get_field('whatsapp_number_ubud', 'option')); ?>
                                     </a>
                                 </div>
                                 <div class="mt-auto">
@@ -87,13 +91,17 @@ get_header();
                                 <h4 class="fw-bold mb-4 text-uppercase">Golden Monkey Sanur</h4>
                                 <div class="mb-4">
                                     <h6 class="text-muted small fw-bold text-uppercase mb-2">Address</h6>
-                                    <div class="fs-5"><?php echo wpautop(get_field('address_sanur', 'option')); ?></div>
+                                    <div class="fs-5"><a
+                                            href="<?php echo get_field('google_maps_url_sanur', 'option'); ?>"
+                                            class="text-dark fs-5 fw-bold"
+                                            target="_blank"><?php echo wpautop(get_field('address_sanur', 'option')); ?>
+                                        </a></div>
                                 </div>
                                 <div class="mb-4">
                                     <h6 class="text-muted small fw-bold text-uppercase mb-2">WhatsApp Number</h6>
                                     <a href="https://api.whatsapp.com/send/?phone=<?php echo get_field('whatsapp_number_sanur', 'option'); ?>&text=<?php echo urlencode(get_field('whatsapp_text_sanur', 'option')); ?>"
                                         class="text-dark fs-5 fw-bold" target="_blank">
-                                        <?php echo get_field('whatsapp_number_sanur', 'option'); ?>
+                                        <?php echo format_phone_number(get_field('whatsapp_number_sanur', 'option')); ?>
                                     </a>
                                 </div>
                                 <div class="mt-auto">
@@ -143,10 +151,19 @@ get_header();
         transition: all 0.3s ease;
     }
 
-    #contactTab .nav-link.active {
+    #contactTab .nav-link:hover:not(.active) {
+        background-color: #f8f9fa !important;
+        color: #b40304 !important;
+        border-color: #b40304 !important;
+    }
+
+    #contactTab .nav-link.active,
+    #contactTab .nav-link:focus {
         background-color: #b40304 !important;
         color: #fff !important;
-        border-color: #b40304 !important;
+        border-color: transparent !important;
+        outline: none !important;
+        box-shadow: none !important;
     }
 </style>
 
