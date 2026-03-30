@@ -23,7 +23,7 @@ if (have_rows('jumbotron', $jumbotron_source)): ?>
                     <div class="container px-4">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
-                                <h3 class="display-5 fw-bold mb-3 text-uppercase letter-spacing-2">
+                                <h3 style="font-size: 40px;" class="display-5 fw-bold mb-3 text-uppercase letter-spacing-2">
                                     <?php the_sub_field('section_title'); ?>
                                 </h3>
 
