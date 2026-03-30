@@ -110,7 +110,7 @@ if (have_posts()):
 
     <div class="pt-4 bg-light">
       <div class="container py-4 py-lg-5">
-        <h2 class="text-center fw-bold mb-3" style="color: #111111;">Find Us</h2>
+        <!-- <h2 class="text-center fw-bold mb-3" style="color: #111111;">Find Us</h2> -->
         <!-- Map Tabs (Centered in Container) -->
         <ul class="nav nav-pills justify-content-center" id="mapTab" role="tablist">
           <li class="nav-item" role="presentation">
@@ -149,10 +149,19 @@ if (have_posts()):
         transition: all 0.3s ease;
       }
 
-      #mapTab .nav-link.active {
+      #mapTab .nav-link:hover:not(.active) {
+        background-color: #f8f9fa !important;
+        color: #b40304 !important;
+        border-color: #b40304 !important;
+      }
+
+      #mapTab .nav-link.active,
+      #mapTab .nav-link:focus {
         background-color: #b40304 !important;
         color: #fff !important;
-        border-color: #b40304 !important;
+        border-color: transparent !important;
+        outline: none !important;
+        box-shadow: none !important;
       }
 
       .ratio-21x9 {

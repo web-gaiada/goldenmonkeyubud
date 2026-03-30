@@ -10,6 +10,32 @@
  */
 
 ?>
+<style>
+  .btn-outline-light:hover {
+    background-color: #ffffff !important;
+    color: #b40304 !important;
+    border-color: #b40304 !important;
+    font-weight: bold;
+  }
+
+  /* Hover State untuk Ikon Sosial Media */
+  .list-social a {
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+
+  .list-social a:hover {
+    opacity: 1 !important;
+    /* Mencegah ikon menjadi redup */
+    transform: translateY(-5px);
+    /* Efek mengangkat ke atas */
+  }
+
+  .list-social a:hover img {
+    filter: brightness(1.2);
+    /* Membuat warna ikon lebih "pop" atau terang */
+  }
+</style>
 
 <div class="bg-footer text-white white-link" style="background-color: #6f0100 !important;">
   <div class="container py-5">
@@ -206,6 +232,7 @@
     if (scroll >= 10) {
       $(".fixed-top").addClass("bg-white-blur");
       $(".fixed-top").addClass("shadow");
+      $(".navbar").addClass("scrolled");
 
       $(".navbar").removeClass("navbar-light");
       $(".navbar").addClass("navbar-dark");
@@ -216,6 +243,7 @@
     } else {
       $(".fixed-top").removeClass("shadow");
       $(".fixed-top").removeClass("bg-white-blur");
+      $(".navbar").removeClass("scrolled");
 
       $(".navbar").removeClass("navbar-dark");
       $(".navbar").addClass("navbar-light");
