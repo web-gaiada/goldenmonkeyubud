@@ -71,10 +71,12 @@
     .navbar-nav .nav-link:hover,
     .navbar-nav .current-menu-item>.nav-link,
     .navbar-nav .current_page_item>.nav-link,
+    .navbar-nav .current_page_parent>.nav-link,
+    .navbar-nav .current-menu-ancestor>.nav-link,
+    .navbar-nav .current-page-ancestor>.nav-link,
     .navbar-nav .active>.nav-link {
       color: #b40304 !important;
       font-weight: 800;
-
     }
 
     /* Hover Line Effect (Desktop Only) */

@@ -246,7 +246,56 @@ function format_phone_number($phone)
 {
 	// remove all non-numeric characters
 	$phone = preg_replace('/\D+/', '', $phone);
-	// format the phone number as (XXX) XXX-XXXX
-	$phone = sprintf("(%s) %s-%s", substr($phone, 0, 3), substr($phone, 3, 3), substr($phone, 6, 4));
-	return $phone;
+
+	$prefix = '';
+	// format phone number 628113866001, agar otomatis ada separator yang rapi
+	// dan jika diawali dengan 62, maka dijadikan (+62), contoh nomor yang diinput 628113866001
+	if (strpos($phone, '62') === 0) {
+		$prefix = '(+62) ';
+		$phone = substr($phone, 2);
+	} elseif (strpos($phone, '0') === 0) {
+		$prefix = '0';
+		$phone = substr($phone, 1);
+	}
+
+	// Pemisahan format menjadi 3-4-x contoh: 811-3866-001
+	if (strlen($phone) >= 9) {
+		$p1 = substr($phone, 0, 3);
+		$p2 = substr($phone, 3, 4);
+		$p3 = substr($phone, 7);
+
+		$formatted = $p1 . '-' . $p2 . ($p3 ? '-' . $p3 : '');
+	} else {
+		$formatted = rtrim(chunk_split($phone, 4, '-'), '-');
+	}
+
+	return $prefix . $formatted;
+}
+
+/**
+ * Memperbaiki hilangnya active state pada menu saat pagination diklik (terutama Custom Links seperti /news/)
+ * dan otomatis mengaktifkan menu yang relevan saat berada di halaman page/2, dll.
+ */
+add_filter('nav_menu_css_class', 'goldenmonkey_fix_pagination_nav_class', 10, 2);
+function goldenmonkey_fix_pagination_nav_class($classes, $item) {
+	$uri = $_SERVER['REQUEST_URI'] ?? '';
+	
+	// Jika URL yang diakses mengandung kata '/news' atau '/media', 
+	// Pastikan item menu dengan nama atau URL 'News' / 'Media' mendapat class active.
+	// Sangat tangguh untuk pagination seperti /news/page/2/ walaupun link-nya relative.
+	$is_news_page = (preg_match('/\/news\b/i', $uri) || preg_match('/\/media\b/i', $uri));
+	$is_news_item = (stripos($item->title, 'news') !== false || stripos($item->title, 'media') !== false || stripos($item->url, '/news') !== false || stripos($item->url, '/media') !== false);
+
+	if ($is_news_page && $is_news_item) {
+		$classes[] = 'current-menu-item';
+		$classes[] = 'active';
+	}
+	
+	// Bisa dijaga fallback standar untuk halaman is_home() atau single post
+	if ((is_home() || is_archive() || is_singular('post')) && $is_news_item) {
+		$classes[] = 'current-menu-item';
+		$classes[] = 'active';
+	}
+	
+	return array_unique($classes);
 }

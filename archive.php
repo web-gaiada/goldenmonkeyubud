@@ -8,40 +8,33 @@
  */
 
 get_header();
+
+$news_header_img = get_field('header_image_news', 'option');
+$news_title = get_field('header_title', 'option') ?: str_replace('Category: ', '', get_the_archive_title());
+$news_subtitle = get_field('header_news_sub_title', 'option') ?: strip_tags(get_the_archive_description());
 ?>
 
 <!-- Header Section (Matching other pages) -->
 <div class="position-relative overflow-hidden bg-brand" style="height: 45vh; min-height: 350px;">
+  <!-- Background Image from ACF Options -->
+  <?php if ($news_header_img): ?>
+    <img src="<?php echo esc_url($news_header_img); ?>" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover" alt="<?php echo esc_attr($news_title); ?>" style="z-index: 0;">
+  <?php endif; ?>
+
   <!-- Background Overlay -->
   <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.5); z-index: 1;"></div>
 
   <!-- Header Content -->
   <div class="position-absolute top-50 start-50 translate-middle text-center text-white w-100 px-3" style="z-index: 2;">
     <h1 class="fw-bold display-4 text-uppercase mb-0">
-      <?php echo str_replace('Category: ', '', get_the_archive_title()); ?>
+      <?php echo esc_html($news_title); ?>
     </h1>
-    <?php if (get_the_archive_description()): ?>
+    <?php if ($news_subtitle): ?>
       <div class="archive-description fs-5 mt-3 fw-light opacity-75">
-        <?php the_archive_description(); ?>
+        <?php echo esc_html($news_subtitle); ?>
       </div>
     <?php endif; ?>
   </div>
-
-  <!-- Optional: Use first post's image as background if available -->
-  <?php if (have_posts()): ?>
-    <style>
-      .archive-header-bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: blur(2px) scale(1.05);
-        opacity: 0.6;
-      }
-    </style>
-  <?php endif; ?>
 </div>
 
 <div class="bg-white py-5">
