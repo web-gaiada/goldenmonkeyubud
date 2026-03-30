@@ -149,10 +149,19 @@ if (have_posts()):
         transition: all 0.3s ease;
       }
 
-      #mapTab .nav-link.active {
+      #mapTab .nav-link:hover:not(.active) {
+        background-color: #f8f9fa !important;
+        color: #b40304 !important;
+        border-color: #b40304 !important;
+      }
+
+      #mapTab .nav-link.active,
+      #mapTab .nav-link:focus {
         background-color: #b40304 !important;
         color: #fff !important;
-        border-color: #b40304 !important;
+        border-color: transparent !important;
+        outline: none !important;
+        box-shadow: none !important;
       }
 
       .ratio-21x9 {
