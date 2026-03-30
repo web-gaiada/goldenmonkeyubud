@@ -15,7 +15,7 @@ $locations = array(
         'maps' => get_field('google_maps_embed_ubud', 'option'),
         'map_url' => get_field('google_maps_url_ubud', 'option'),
         'description' => get_field('description_ubud', 'option'),
-        'gallery'     => get_field('atmosphere_gallery_ubud', 'option'),
+        'gallery' => get_field('atmosphere_gallery_ubud', 'option'),
         'hours' => get_field('operational_hours_ubud', 'option'),
     ),
     'sanur' => array(
@@ -26,7 +26,7 @@ $locations = array(
         'maps' => get_field('google_maps_embed_sanur', 'option'),
         'map_url' => get_field('google_maps_url_sanur', 'option'),
         'description' => get_field('description_sanur', 'option'),
-        'gallery'     => get_field('atmosphere_gallery_sanur', 'option'),
+        'gallery' => get_field('atmosphere_gallery_sanur', 'option'),
         'hours' => get_field('operational_hours_sanur', 'option'),
     )
 );
@@ -53,28 +53,28 @@ $locations = array(
                         id="<?php echo $key; ?>-loc" role="tabpanel">
 
                         <!-- Description Article -->
-                        <?php if($loc['description']): ?>
-                        <div class="text-center mb-5 px-lg-5">
-                            <div class="description-text fs-5">
-                                <?php echo $loc['description']; ?>
+                        <?php if ($loc['description']): ?>
+                            <div class="text-center mb-5 px-lg-5">
+                                <div class="description-text fs-5">
+                                    <?php echo $loc['description']; ?>
+                                </div>
                             </div>
-                        </div>
                         <?php endif; ?>
 
                         <!-- Atmosphere Gallery -->
-                        <?php if($loc['gallery']): ?>
-                        <div class="mb-5 pb-5 border-bottom">
-                            <h4 class="text-center fw-bold mb-4 text-uppercase">Atmosphere</h4>
-                            <div class="row g-3">
-                                <?php foreach($loc['gallery'] as $image_id): ?>
-                                <div class="col-6 col-md-4">
-                                    <div class="ratio ratio-1x1 shadow-sm rounded border overflow-hidden">
-                                        <?php echo wp_get_attachment_image($image_id, 'medium_large', false, array('class' => 'w-100 h-100 object-fit-cover')); ?>
-                                    </div>
+                        <?php if ($loc['gallery']): ?>
+                            <div class="mb-5 pb-5 border-bottom">
+                                <h4 style="font-size: 30px;" class="text-center fw-bold mb-4 text-uppercase">Atmosphere</h4>
+                                <div class="row g-3">
+                                    <?php foreach ($loc['gallery'] as $image_id): ?>
+                                        <div class="col-6 col-md-4">
+                                            <div class="ratio ratio-1x1 shadow-sm rounded border overflow-hidden">
+                                                <?php echo wp_get_attachment_image($image_id, 'medium_large', false, array('class' => 'w-100 h-100 object-fit-cover')); ?>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
                                 </div>
-                                <?php endforeach; ?>
                             </div>
-                        </div>
                         <?php endif; ?>
 
                         <div class="row gy-4">
@@ -134,16 +134,25 @@ $locations = array(
         transition: all 0.3s ease;
     }
 
-    #locationTab .nav-link.active {
+    #locationTab .nav-link:hover:not(.active) {
+        background-color: #f8f9fa !important;
+        color: #b40304 !important;
+        border-color: #b40304 !important;
+    }
+
+    #locationTab .nav-link.active,
+    #locationTab .nav-link:focus {
         background-color: #b40304 !important;
         color: #fff !important;
-        border-color: #b40304 !important;
+        border-color: transparent !important;
+        outline: none !important;
+        box-shadow: none !important;
     }
 
     .text-danger {
         color: #b40304 !important;
     }
-    
+
     .object-fit-cover {
         object-fit: cover;
     }
