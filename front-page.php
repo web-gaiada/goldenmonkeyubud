@@ -110,7 +110,7 @@ if (have_posts()):
 
     <div class="pt-4 bg-light">
       <div class="container py-4 py-lg-5">
-        <h2 class="text-center fw-bold mb-3" style="color: #111111;">Find Us</h2>
+        <!-- <h2 class="text-center fw-bold mb-3" style="color: #111111;">Find Us</h2> -->
         <!-- Map Tabs (Centered in Container) -->
         <ul class="nav nav-pills justify-content-center" id="mapTab" role="tablist">
           <li class="nav-item" role="presentation">
