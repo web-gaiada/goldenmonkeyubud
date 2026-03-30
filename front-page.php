@@ -20,6 +20,23 @@ get_header();
   .swiper .wpsr-review-template {
     margin-top: 64px;
     height: 230px;
+    /* overflow: hidden; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Styling link Read More agar terlihat profesional */
+  .wpsr-review-content a {
+    color: #b40304 !important;
+    font-weight: bold;
+    text-decoration: none !important;
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+  .wpsr-review-content a:hover {
+    text-decoration: underline !important;
   }
 
   .swiper .wpsr-col-12 {
@@ -205,11 +222,28 @@ endif;
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // Initialize Swiper slider
+    const reviewGroups = document.querySelectorAll('div[role="group"]');
+    const swiperWrapper = document.querySelector('.swiper-wrapper');
+
+    reviewGroups.forEach(function (reviewGroup) {
+      const ratingElement = reviewGroup.querySelector('div[data-rating]');
+      const commentElement = reviewGroup.querySelector('.wpsr-review-content');
+
+      if (ratingElement && ratingElement.getAttribute('data-rating') === '5' && commentElement && commentElement.textContent.trim() !== '') {
+        const swiperSlide = document.createElement('div');
+        swiperSlide.classList.add('swiper-slide');
+        swiperSlide.appendChild(reviewGroup);
+        swiperWrapper.appendChild(swiperSlide);
+      } else {
+        reviewGroup.style.display = 'none';
+      }
+    });
+
     const swiper = new Swiper('.swiper-container', {
-      slidesPerView: 1, // Show one review at a time
-      spaceBetween: 4, // Space between slides
-      loop: true, // Loop through reviews,
+      slidesPerView: 1,
+      spaceBetween: 4,
+      loop: true,
+      autoHeight: false, // Jaga agar tinggi baris slider tetap seragam
       pagination: {
         el: '.swiper-pagination',
         clickable: true
@@ -219,35 +253,19 @@ endif;
         prevEl: '.swiper-button-prev'
       },
       breakpoints: {
-        768: {
-          slidesPerView: 2
-        },
-        1024: {
-          slidesPerView: 4,
-        }
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 4 }
       }
     });
 
-    // Select all elements with the role="group" attribute
-    const reviewGroups = document.querySelectorAll('div[role="group"]');
-
-    reviewGroups.forEach(function (reviewGroup) {
-      // Find the rating element within each review group
-      const ratingElement = reviewGroup.querySelector('div[data-rating]');
-      // Find the comment element within each review group
-      const commentElement = reviewGroup.querySelector('.wpsr-review-content'); // Ganti ".comment-class" dengan selector elemen komentar yang sesuai
-
-      // Check if the data-rating attribute is equal to 5 and if there is a comment
-      if (ratingElement && ratingElement.getAttribute('data-rating') === '5' && commentElement && commentElement.textContent.trim() !== '') {
-        // If rating is 5 and comment is not empty, show this review group (by adding to Swiper wrapper)
-        const swiperSlide = document.createElement('div');
-        swiperSlide.classList.add('swiper-slide');
-        swiperSlide.appendChild(reviewGroup);
-        document.querySelector('.swiper-wrapper').appendChild(swiperSlide);
-      } else {
-        // Otherwise, hide the review group
-        reviewGroup.style.display = 'none';
-      }
+    // Handle klik pada link di dalam review agar mengarah ke Google Review
+    jQuery(document).on('click', '.wpsr-review-content a', function (e) {
+      // URL Google Review Resmi untuk Golden Monkey Ubud
+      const googleReviewUrl = 'https://search.google.com/local/reviews?placeid=ChIJX9bJd2zN0i0Re8xnVlwLT8k';
+      
+      jQuery(this).attr('href', googleReviewUrl);
+      jQuery(this).attr('target', '_blank');
+      jQuery(this).attr('rel', 'noopener noreferrer');
     });
   });
 </script>

@@ -142,18 +142,26 @@
 </article>
 
 <style>
-  .nav-pills .nav-link {
+  #menuTab .nav-link {
     color: #000;
     background-color: #fff;
     border-color: #dee2e6 !important;
     transition: all 0.3s ease;
   }
 
-  .nav-pills .nav-link.active {
-    background-color: #b40304 !important;
-    /* Warna merah khas Golden Monkey */
-    color: #fff !important;
+  #menuTab .nav-link:hover:not(.active) {
+    background-color: #f8f9fa !important;
+    color: #b40304 !important;
     border-color: #b40304 !important;
+  }
+
+  #menuTab .nav-link.active,
+  #menuTab .nav-link:focus {
+    background-color: #b40304 !important;
+    color: #fff !important;
+    border-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
   }
 
   .list-dotted small {

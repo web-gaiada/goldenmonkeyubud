@@ -43,16 +43,14 @@ $map_subtitle = get_field('map_subtitle', 'option');
                 <div class="tab-pane fade show active" id="res-ubud-content" role="tabpanel"
                     aria-labelledby="res-ubud-tab">
                     <div class="card border-0 shadow-sm p-4 p-md-5 bg-light text-center mb-5">
-                        <h4 class="fw-bold mb-4">Golden Monkey Ubud Reservation</h4>
+                        <h2 class="fw-bold mb-4">Golden Monkey Ubud Reservation</h2>
                         <p class="mb-5 lead">Book your table at our Ubud location for an authentic Chinese dining
                             experience.</p>
 
                         <?php if (get_field('reservation_url_ubud', 'option')): ?>
                             <div class="reservation-form-container bg-white shadow-sm rounded mb-4 overflow-hidden">
-                                <iframe src="<?php echo get_field('reservation_url_ubud', 'option'); ?>" 
-                                    frameborder="0"
-                                    scrolling="auto"
-                                    class="resdiary-iframe"
+                                <iframe src="<?php echo get_field('reservation_url_ubud', 'option'); ?>" frameborder="0"
+                                    scrolling="auto" class="resdiary-iframe"
                                     style="width:100%; min-height: 850px; border:none; display: block;"></iframe>
                             </div>
                             <div class="mt-4">
@@ -68,11 +66,11 @@ $map_subtitle = get_field('map_subtitle', 'option');
                     <!-- Map for Ubud -->
                     <div class="mt-5 pt-5 border-top text-center">
                         <h3 class="mb-4 fw-bold"><?php echo $map_title; ?> - Ubud</h3>
-                        <?php if($map_subtitle): ?>
+                        <?php if ($map_subtitle): ?>
                             <p class="fs-5"><?php echo $map_subtitle; ?></p>
                         <?php endif; ?>
                         <div class="ratio ratio-21x9 shadow-sm rounded border overflow-hidden bg-light">
-                            <?php if($map_ubud): ?>
+                            <?php if ($map_ubud): ?>
                                 <?php echo $map_ubud; ?>
                             <?php else: ?>
                                 <iframe
@@ -87,16 +85,14 @@ $map_subtitle = get_field('map_subtitle', 'option');
                 <!-- Sanur Reservation Content -->
                 <div class="tab-pane fade" id="res-sanur-content" role="tabpanel" aria-labelledby="res-sanur-tab">
                     <div class="card border-0 shadow-sm p-4 p-md-5 bg-light text-center mb-5">
-                        <h4 class="fw-bold mb-4">Golden Monkey Sanur Reservation</h4>
+                        <h2 class="fw-bold mb-4">Golden Monkey Sanur Reservation</h2>
                         <p class="mb-5 lead">Experience our signature Cantonese dishes at our vibrant Sanur restaurant.
                         </p>
 
                         <?php if (get_field('reservation_url_sanur', 'option')): ?>
                             <div class="reservation-form-container bg-white shadow-sm rounded mb-4 overflow-hidden">
-                                <iframe src="<?php echo get_field('reservation_url_sanur', 'option'); ?>" 
-                                    frameborder="0"
-                                    scrolling="auto"
-                                    class="resdiary-iframe"
+                                <iframe src="<?php echo get_field('reservation_url_sanur', 'option'); ?>" frameborder="0"
+                                    scrolling="auto" class="resdiary-iframe"
                                     style="width:100%; min-height: 850px; border:none; display: block;"></iframe>
                             </div>
                             <div class="mt-4">
@@ -112,11 +108,11 @@ $map_subtitle = get_field('map_subtitle', 'option');
                     <!-- Map for Sanur -->
                     <div class="mt-5 pt-5 border-top text-center">
                         <h3 class="mb-4 fw-bold"><?php echo $map_title; ?> - Sanur</h3>
-                        <?php if($map_subtitle): ?>
+                        <?php if ($map_subtitle): ?>
                             <p class="fs-5"><?php echo $map_subtitle; ?></p>
                         <?php endif; ?>
                         <div class="ratio ratio-21x9 shadow-sm rounded border overflow-hidden bg-light">
-                            <?php if($map_sanur): ?>
+                            <?php if ($map_sanur): ?>
                                 <?php echo $map_sanur; ?>
                             <?php else: ?>
                                 <div class="alert alert-info">Map for Sanur is not set yet.</div>
@@ -137,10 +133,19 @@ $map_subtitle = get_field('map_subtitle', 'option');
         transition: all 0.3s ease;
     }
 
-    #resTab .nav-link.active {
+    #resTab .nav-link:hover:not(.active) {
+        background-color: #f8f9fa !important;
+        color: #b40304 !important;
+        border-color: #b40304 !important;
+    }
+
+    #resTab .nav-link.active,
+    #resTab .nav-link:focus {
         background-color: #b40304 !important;
         color: #fff !important;
-        border-color: #b40304 !important;
+        border-color: transparent !important;
+        outline: none !important;
+        box-shadow: none !important;
     }
 
     .lead {
