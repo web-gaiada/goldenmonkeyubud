@@ -18,7 +18,7 @@ $news_subtitle = get_field('header_news_sub_title', 'option') ?: strip_tags(get_
 <div class="position-relative overflow-hidden bg-brand" style="height: 45vh; min-height: 350px;">
   <!-- Background Image from ACF Options -->
   <?php if ($news_header_img): ?>
-    <img src="<?php echo esc_url($news_header_img); ?>" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover" alt="<?php echo esc_attr($news_title); ?>" style="z-index: 0;">
+    <img src="<?php echo esc_url($news_header_img); ?>" class="position-absolute top-0 start-0 w-100 h-100" alt="<?php echo esc_attr($news_title); ?>" style="z-index: 0; object-fit: cover; object-position: center;">
   <?php endif; ?>
 
   <!-- Background Overlay -->
