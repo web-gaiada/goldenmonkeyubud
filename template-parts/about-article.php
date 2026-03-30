@@ -1,29 +1,30 @@
-<?php $i = get_field('count'); ?>
 <?php if (have_rows('article_list')): ?>
-    <div class="container py-5">
+    <div class="container py-4 py-lg-5">
         <?php
-        $count = $i;
+        $i = get_field('count') ?: 0;
+        $total_rows = count(get_field('article_list'));
         $n = 0;
         ?>
         <?php while (have_rows('article_list')):
             the_row(); ?>
             <?php
-            $x = $n++;
+            $n++;
+            $is_last = ($n == $total_rows);
             ?>
             <?php if (get_sub_field('layout_option') == 'Two Column'): ?>
                 <div
-                    class="opoiki row gx-0 bg-second-brand <?php if ($x < $i): ?>mb-5<?php else: ?>mb-0<?php endif; ?> overflow-hidden border-0">
+                    class="opoiki row gx-0 bg-second-brand <?php echo !$is_last ? 'mb-4 mb-lg-5' : 'mb-0'; ?> overflow-hidden border-0">
                     <!-- Text Column -->
                     <div
-                        class="col-12 col-lg-6 align-self-center <?php if ($count % 2 == 0): ?>order-2 order-lg-2<?php else: ?>order-2 order-lg-1<?php endif; ?>">
-                        <div class="py-4 <?php if ($count % 2 == 0): ?>ps-lg-5<?php else: ?>pe-lg-5<?php endif; ?>">
+                        class="col-12 col-lg-6 align-self-center <?php if ($n % 2 == 0): ?>order-2 order-lg-2<?php else: ?>order-2 order-lg-1<?php endif; ?>">
+                        <div class="py-4 py-lg-0 <?php if ($n % 2 == 0): ?>ps-lg-5<?php else: ?>pe-lg-5<?php endif; ?>">
                             <?php if (get_sub_field('article_title')): ?>
                                 <h2 class="display-6 fw-bold mb-4 text-uppercase" style="letter-spacing: 2px; color: #111;">
                                     <?php the_sub_field('article_title'); ?>
                                 </h2>
                             <?php endif; ?>
 
-                            <div class="article-body fs-5 mb-5" style="line-height: 1.8; color: #333;">
+                            <div class="article-body fs-5 mb-4 mb-lg-5" style="line-height: 1.8; color: #333;">
                                 <?php echo get_sub_field('article_content'); ?>
                             </div>
 
@@ -40,14 +41,13 @@
                     </div>
                     <!-- Image Column -->
                     <div
-                        class="col-12 col-lg-6 <?php if ($count % 2 == 0): ?>order-1 order-lg-1<?php else: ?>order-1 order-lg-2<?php endif; ?>">
+                        class="col-12 col-lg-6 <?php if ($n % 2 == 0): ?>order-1 order-lg-1<?php else: ?>order-1 order-lg-2<?php endif; ?>">
                         <?php $article_img = get_sub_field('article_image'); ?>
                         <?php echo wp_get_attachment_image($article_img, "full", "", array("class" => "img-cover w-100 h-100", "style" => "object-fit: cover; min-height: 400px;")); ?>
                     </div>
                 </div>
-                <?php $count++; ?>
             <?php else: ?>
-                <div class="row mb-5">
+                <div class="row <?php echo !$is_last ? 'mb-4 mb-lg-5' : 'mb-0'; ?>">
                     <div class="col-12 p-4 p-md-5">
                         <?php if (get_sub_field('article_title')): ?>
                             <h2 class="display-6 fw-bold mb-4 text-uppercase text-center" style="letter-spacing: 2px; color: #111;">
