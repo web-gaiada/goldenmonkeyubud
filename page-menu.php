@@ -16,7 +16,6 @@ get_header();
 			the_post();
 
 			get_template_part( 'template-parts/content', 'header' );
-			get_template_part( 'template-parts/content', 'about' );
 			get_template_part( 'template-parts/content', 'menu' );			
 
 		endwhile; // End of the loop.
