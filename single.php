@@ -93,8 +93,8 @@ if (has_post_thumbnail()) {
 				</div>
 			</div>
 			<div id="container-next-prev" class="col-12 col-lg-8 py-4 px-2 px-lg-5">
-				<div class="bg-light">
-					<nav id="nav-single" class="d-block d-lg-flex align-items-start">
+				<div class="bg-light h-100 d-flex flex-column">
+					<nav id="nav-single" class="d-block d-lg-flex align-items-stretch h-100 w-100">
 						<?php
 						$prev_post = get_previous_post();
 						$prev_permalink = !empty($prev_post) ? get_permalink($prev_post->ID) : '';
@@ -105,18 +105,26 @@ if (has_post_thumbnail()) {
 						
 						<?php if (!empty($prev_post)): ?>
 							<!-- Mengubah SPAN menjadi tag A utuh agar interaktif seluruh area kotaknya -->
-							<a href="<?php echo esc_url($prev_permalink); ?>" id="span-prev-article" class="nav-previous d-block w-50 p-4 text-center text-lg-start text-decoration-none text-dark article-nav-link">
-								<span class="meta-nav fs-5">&larr;</span> <span class="text-muted fw-bold text-uppercase" style="font-size:0.85rem;">Previous</span><br>
-								<strong class="text-brand fs-5 mt-2 d-block"><?php echo esc_html($prev_post->post_title); ?></strong>
+							<a href="<?php echo esc_url($prev_permalink); ?>" id="span-prev-article" class="nav-previous d-flex flex-column justify-content-between w-50 p-4 text-center text-lg-start text-decoration-none text-dark article-nav-link">
+								<div class="mb-3">
+									<span class="meta-nav fs-5 text-nav">&larr;</span> <span class="text-muted text-nav fw-bold text-uppercase" style="font-size:0.85rem;">Previous</span>
+								</div>
+								<div>
+									<strong class="text-brand fs-5 d-block"><?php echo esc_html($prev_post->post_title); ?></strong>
+								</div>
 							</a>
 						<?php else: ?>
 							<span id="span-prev-article" class="nav-previous d-block w-50 p-4"></span>
 						<?php endif; ?>
 
 						<?php if (!empty($next_post)): ?>
-							<a href="<?php echo esc_url($next_permalink); ?>" id="span-next-article" class="nav-next d-block w-50 p-4 text-center text-lg-end text-decoration-none text-dark article-nav-link border-start">
-								<span class="text-muted fw-bold text-uppercase" style="font-size:0.85rem;">Next</span> <span class="meta-nav fs-5">&rarr;</span><br>
-								<strong class="text-brand fs-5 mt-2 d-block"><?php echo esc_html($next_post->post_title); ?></strong>
+							<a href="<?php echo esc_url($next_permalink); ?>" id="span-next-article" class="nav-next d-flex flex-column justify-content-between w-50 p-4 text-center text-lg-end text-decoration-none text-dark article-nav-link border-start">
+								<div class="mb-3">
+									<span class="text-muted text-nav fw-bold text-uppercase" style="font-size:0.85rem;">Next</span> <span class="meta-nav fs-5 text-nav">&rarr;</span>
+								</div>
+								<div>
+									<strong class="text-brand fs-5 d-block"><?php echo esc_html($next_post->post_title); ?></strong>
+								</div>
 							</a>
 						<?php else: ?>
 							<span id="span-next-article" class="nav-next d-block w-50 p-4 border-start"></span>
@@ -135,12 +143,15 @@ if (has_post_thumbnail()) {
 		background-color: transparent;
 	}
 	.article-nav-link:hover {
-		background-color: rgba(180, 3, 4, 0.05); /* Latar merah semi transparan (Brand red) */
+		background-color: #b40304 !important; /* Merah pekat menutupi seluruh kotak */
 	}
-	.article-nav-link:hover .text-brand {
-		color: #b40304 !important;
+	.article-nav-link:hover .text-brand,
+	.article-nav-link:hover .text-muted,
+	.article-nav-link:hover .text-nav,
+	.article-nav-link:hover .meta-nav {
+		color: #fff !important; /* Ubah teks jadi putih ketika disorot */
 	}
-	.text-brand {
+	.text-brand, .text-nav {
 		color: #111;
 		transition: color 0.3s ease;
 	}
