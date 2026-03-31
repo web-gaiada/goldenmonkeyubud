@@ -190,6 +190,17 @@ get_header();
         background-color: #f0fff4 !important;
         color: #00aa13 !important;
     }
+
+    /* Efek sorot/Hover untuk link Address dan WhatsApp */
+    #contactTabContent .card .mb-4 a.text-dark {
+        transition: color 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    #contactTabContent .card .mb-4 a.text-dark:hover {
+        color: #b40304 !important; /* Warna identitas brand/Monash Red */
+    }
 </style>
 
 <script>
