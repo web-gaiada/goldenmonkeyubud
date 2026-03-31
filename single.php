@@ -18,11 +18,12 @@ if (has_post_thumbnail()) {
 
 <div class="position-relative d-flex align-items-center justify-content-center bg-brand" style="min-height: 45vh;">
 	<?php if ($bg_image): ?>
-		<img src="<?php echo esc_url($bg_image); ?>" class="position-absolute w-100 h-100 top-0 start-0" style="object-fit: cover; z-index: 0;" alt="<?php echo esc_attr(get_the_title()); ?>">
+		<img src="<?php echo esc_url($bg_image); ?>" class="position-absolute w-100 h-100 top-0 start-0"
+			style="object-fit: cover; z-index: 0;" alt="<?php echo esc_attr(get_the_title()); ?>">
 		<!-- Overlay gelap agar teks lebih terbaca -->
 		<div class="position-absolute w-100 h-100 top-0 start-0" style="background: rgba(0,0,0,0.5); z-index: 1;"></div>
 	<?php endif; ?>
-	
+
 	<div class="container position-relative" style="z-index: 2;">
 		<div class="row py-5 align-items-center">
 			<div class="col-12 py-3 py-lg-5 text-center text-white">
@@ -91,7 +92,7 @@ if (has_post_thumbnail()) {
 					?>
 				</div>
 			</div>
-			<div class="col-12 col-lg-8 py-4">
+			<div id="container-next-prev" class="col-12 col-lg-8 py-4 px-2 px-lg-5">
 				<div class="bg-light">
 					<nav id="nav-single" class="d-block d-lg-flex align-items-start">
 						<?php
@@ -112,7 +113,9 @@ if (has_post_thumbnail()) {
 							<?php
 							if (!empty($prev_post)):
 								previous_post_link('%link', __('<span class="meta-nav">&larr;</span> Previous<br>', 'goldenmonkey')); ?>
-								<strong><a href="<?php echo $permalink; ?>"><?php echo $prev_post->post_title; ?></a></strong>
+								<strong><a href="<?php echo $permalink; ?>">
+										<?php echo $prev_post->post_title; ?>
+									</a></strong>
 							<?php endif; ?>
 						</span>
 						<span class="nav-next d-block w-50 p-4 text-center text-lg-end">
