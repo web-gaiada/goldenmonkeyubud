@@ -97,40 +97,54 @@ if (has_post_thumbnail()) {
 					<nav id="nav-single" class="d-block d-lg-flex align-items-start">
 						<?php
 						$prev_post = get_previous_post();
-						if (!empty($prev_post)):
-							$id = $prev_post->ID;
-							$permalink = get_permalink($id);
-						endif;
-						?>
-						<?php
+						$prev_permalink = !empty($prev_post) ? get_permalink($prev_post->ID) : '';
+						
 						$next_post = get_next_post();
-						if (!empty($next_post)):
-							$nid = $next_post->ID;
-							$permalink = get_permalink($nid);
-						endif;
+						$next_permalink = !empty($next_post) ? get_permalink($next_post->ID) : '';
 						?>
-						<span class="nav-previous d-block w-50 p-4 text-center text-lg-start">
-							<?php
-							if (!empty($prev_post)):
-								previous_post_link('%link', __('<span class="meta-nav">&larr;</span> Previous<br>', 'goldenmonkey')); ?>
-								<strong><a href="<?php echo $permalink; ?>">
-										<?php echo $prev_post->post_title; ?>
-									</a></strong>
-							<?php endif; ?>
-						</span>
-						<span class="nav-next d-block w-50 p-4 text-center text-lg-end">
-							<?php
-							if (!empty($next_post)):
-								next_post_link('%link', __('Next <span class="meta-nav">&rarr;</span><br>', 'goldenmonkey')); ?>
-								<strong><a href="<?php echo $permalink; ?>"><?php echo $next_post->post_title; ?></a></strong>
-							<?php endif; ?>
-						</span>
+						
+						<?php if (!empty($prev_post)): ?>
+							<!-- Mengubah SPAN menjadi tag A utuh agar interaktif seluruh area kotaknya -->
+							<a href="<?php echo esc_url($prev_permalink); ?>" id="span-prev-article" class="nav-previous d-block w-50 p-4 text-center text-lg-start text-decoration-none text-dark article-nav-link">
+								<span class="meta-nav fs-5">&larr;</span> <span class="text-muted fw-bold text-uppercase" style="font-size:0.85rem;">Previous</span><br>
+								<strong class="text-brand fs-5 mt-2 d-block"><?php echo esc_html($prev_post->post_title); ?></strong>
+							</a>
+						<?php else: ?>
+							<span id="span-prev-article" class="nav-previous d-block w-50 p-4"></span>
+						<?php endif; ?>
+
+						<?php if (!empty($next_post)): ?>
+							<a href="<?php echo esc_url($next_permalink); ?>" id="span-next-article" class="nav-next d-block w-50 p-4 text-center text-lg-end text-decoration-none text-dark article-nav-link border-start">
+								<span class="text-muted fw-bold text-uppercase" style="font-size:0.85rem;">Next</span> <span class="meta-nav fs-5">&rarr;</span><br>
+								<strong class="text-brand fs-5 mt-2 d-block"><?php echo esc_html($next_post->post_title); ?></strong>
+							</a>
+						<?php else: ?>
+							<span id="span-next-article" class="nav-next d-block w-50 p-4 border-start"></span>
+						<?php endif; ?>
 					</nav>
 				</div>
 			</div>
 		</div>
 	</main><!-- #main -->
 </div>
+
+<style>
+	/* Animasi mulus saat area navigasi artikel diseret / dihover */
+	.article-nav-link {
+		transition: background-color 0.3s ease;
+		background-color: transparent;
+	}
+	.article-nav-link:hover {
+		background-color: rgba(180, 3, 4, 0.05); /* Latar merah semi transparan (Brand red) */
+	}
+	.article-nav-link:hover .text-brand {
+		color: #b40304 !important;
+	}
+	.text-brand {
+		color: #111;
+		transition: color 0.3s ease;
+	}
+</style>
 
 <?php
 get_footer();
