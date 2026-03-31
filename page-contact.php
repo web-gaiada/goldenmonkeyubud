@@ -24,23 +24,24 @@ get_header();
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active px-5 py-3 fw-bold text-uppercase rounded-0 border"
                         id="contact-ubud-tab" data-bs-toggle="pill" data-bs-target="#contact-ubud" type="button"
-                        role="tab">Ubud</button>
+                        role="tab" aria-controls="contact-ubud" aria-selected="true">Ubud</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link px-5 py-3 fw-bold text-uppercase rounded-0 border" id="contact-sanur-tab"
-                        data-bs-toggle="pill" data-bs-target="#contact-sanur" type="button" role="tab">Sanur</button>
+                        data-bs-toggle="pill" data-bs-target="#contact-sanur" type="button" role="tab"
+                        aria-controls="contact-sanur" aria-selected="false">Sanur</button>
                 </li>
             </ul>
 
             <div class="tab-content" id="contactTabContent">
                 <!-- Ubud Contact Info -->
-                <div class="tab-pane fade show active" id="contact-ubud" role="tabpanel">
+                <div class="tab-pane fade show active" id="contact-ubud" role="tabpanel" aria-labelledby="contact-ubud-tab">
                     <div class="row gy-4 mb-5">
                         <div class="col-md-6">
                             <div class="card h-100 border-0 shadow-sm bg-light p-4 p-md-5">
-                                <h4 class="fw-bold mb-4 text-uppercase">Golden Monkey Ubud</h4>
+                                <h2 class="h4 fw-bold mb-4 text-uppercase">Golden Monkey Ubud</h2>
                                 <div class="mb-4">
-                                    <h6 class="text-muted small fw-bold text-uppercase mb-2">Address</h6>
+                                    <h3 class="text-muted small fw-bold text-uppercase mb-2">Address</h3>
                                     <div class="fs-5"><a
                                             href="<?php echo get_field('google_maps_url_ubud', 'option'); ?>"
                                             class="text-dark fs-5 fw-bold"
@@ -48,7 +49,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="mb-4">
-                                    <h6 class="text-muted small fw-bold text-uppercase mb-2">WhatsApp Number</h6>
+                                    <h3 class="text-muted small fw-bold text-uppercase mb-2">WhatsApp Number</h3>
                                     <a href="https://api.whatsapp.com/send/?phone=<?php echo get_field('whatsapp_number_ubud', 'option'); ?>&text=<?php echo urlencode(get_field('whatsapp_text_ubud', 'option')); ?>"
                                         class="text-dark fs-5 fw-bold" target="_blank">
                                         <?php echo format_phone_number(get_field('whatsapp_number_ubud', 'option')); ?>
@@ -84,13 +85,13 @@ get_header();
                 </div>
 
                 <!-- Sanur Contact Info -->
-                <div class="tab-pane fade" id="contact-sanur" role="tabpanel">
+                <div class="tab-pane fade" id="contact-sanur" role="tabpanel" aria-labelledby="contact-sanur-tab">
                     <div class="row gy-4 mb-5">
                         <div class="col-md-6">
                             <div class="card h-100 border-0 shadow-sm bg-light p-4 p-md-5">
-                                <h4 class="fw-bold mb-4 text-uppercase">Golden Monkey Sanur</h4>
+                                <h2 class="h4 fw-bold mb-4 text-uppercase">Golden Monkey Sanur</h2>
                                 <div class="mb-4">
-                                    <h6 class="text-muted small fw-bold text-uppercase mb-2">Address</h6>
+                                    <h3 class="text-muted small fw-bold text-uppercase mb-2">Address</h3>
                                     <div class="fs-5"><a
                                             href="<?php echo get_field('google_maps_url_sanur', 'option'); ?>"
                                             class="text-dark fs-5 fw-bold"
@@ -98,7 +99,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="mb-4">
-                                    <h6 class="text-muted small fw-bold text-uppercase mb-2">WhatsApp Number</h6>
+                                    <h3 class="text-muted small fw-bold text-uppercase mb-2">WhatsApp Number</h3>
                                     <a href="https://api.whatsapp.com/send/?phone=<?php echo get_field('whatsapp_number_sanur', 'option'); ?>&text=<?php echo urlencode(get_field('whatsapp_text_sanur', 'option')); ?>"
                                         class="text-dark fs-5 fw-bold" target="_blank">
                                         <?php echo format_phone_number(get_field('whatsapp_number_sanur', 'option')); ?>
@@ -157,13 +158,19 @@ get_header();
         border-color: #b40304 !important;
     }
 
-    #contactTab .nav-link.active,
-    #contactTab .nav-link:focus {
+    #contactTab .nav-link.active {
         background-color: #b40304 !important;
         color: #fff !important;
         border-color: transparent !important;
         outline: none !important;
         box-shadow: none !important;
+    }
+
+    /* [A11Y FIXED]: Indikator fokus yang tajam untuk pengguna keyboard navigasi Tab */
+    #contactTab .nav-link:focus-visible {
+        outline: 3px solid #111 !important;
+        outline-offset: -3px;
+        box-shadow: 0 0 0 4px rgba(180, 3, 4, 0.4) !important;
     }
 </style>
 
