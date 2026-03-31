@@ -92,18 +92,20 @@ if (have_posts()):
     ?>
     <div class="position-relative">
       <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
-        <p class="fw-bold header-text"><?php the_field('header_title'); ?></p>
+        <!-- [A11Y FIXED]: Mengubah <p> menjadi <h1> untuk hierarki heading utama agar SEO dan screen reader lebih baik -->
+        <h1 class="fw-bold header-text fs-1"><?php the_field('header_title'); ?></h1>
         <?php if (have_rows('header_button')): ?>
           <?php while (have_rows('header_button')):
             the_row(); ?>
+            <!-- [A11Y FIXED]: Mengganti typo "arial-label" menjadi "aria-label", tapi idealnya biarkan screen reader membaca teks tombol langsung -->
             <a href="<?php bloginfo('url') ?><?php the_sub_field('button_link'); ?>"
               class="btn btn-outline-light rounded-0 btn-lg mt-5"
-              arial-label="Golden Monkey Ubud"><?php the_sub_field('button_text'); ?></a>
+              aria-label="<?php echo esc_attr(get_sub_field('button_text')) . ' at Golden Monkey Ubud'; ?>"><?php the_sub_field('button_text'); ?></a>
           <?php endwhile; ?>
         <?php endif; ?>
       </div>
       <?php $header_image = get_field('header_image'); ?>
-      <?php echo wp_get_attachment_image($header_image, "full", "", array("class" => "img-header")); ?>
+      <?php echo wp_get_attachment_image($header_image, "full", false, array("class" => "img-header")); ?>
     </div>
     <?php
     get_template_part('template-parts/about', 'article');
@@ -119,9 +121,9 @@ if (have_posts()):
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
-        <!-- Add Navigation (Optional) -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+        <!-- Add Navigation (Optional) [A11Y FIXED: Tambah atribut aksesibilitas pada Carousel control] -->
+        <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></div>
+        <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide"></div>
       </div>
     </div>
 
@@ -172,13 +174,19 @@ if (have_posts()):
         border-color: #b40304 !important;
       }
 
-      #mapTab .nav-link.active,
-      #mapTab .nav-link:focus {
+      #mapTab .nav-link.active {
         background-color: #b40304 !important;
         color: #fff !important;
         border-color: transparent !important;
         outline: none !important;
         box-shadow: none !important;
+      }
+
+      /* [A11Y FIXED]: Fokus visual untuk navigasi tombol Tab keyboard */
+      #mapTab .nav-link:focus-visible {
+        outline: 3px solid #111 !important;
+        outline-offset: -3px;
+        box-shadow: 0 0 0 4px rgba(180, 3, 4, 0.4) !important;
       }
 
       .ratio-21x9 {
@@ -197,19 +205,23 @@ if (have_posts()):
     ?>
 
     <?php if (get_field('popup_title')): ?>
+      <!-- [A11Y FIXED: Menambahkan aria-modal="true" dan menghapus role jika digantikan oleh atribut bawaan bootstrap tapi menambahkan dukungan dialog secara eksplisit] -->
       <div class="modal fade" id="GoldenMonkeyOffer" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="GoldenMonkeyOfferLabel" aria-hidden="true">
+        aria-labelledby="GoldenMonkeyOfferLabel" aria-modal="true" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-body text-white text-center px-lg-5">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              <h2 class="py-4 fs-4"><?php the_field('popup_title'); ?></h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close modal window"></button>
+              <h2 id="GoldenMonkeyOfferLabel" class="py-4 fs-4"><?php the_field('popup_title'); ?></h2>
               <p class="pb-4"><?php the_field('popup_text'); ?></p>
-              <a href="<?php the_field('popup_link'); ?>" class="btn btn-light text-uppercase fw-bold py-2 px-3"
-                aria-label="Golden Monkey Popup"><?php the_field('popup_button_text'); ?></a>
+              <!-- [A11Y FIXED: aria-label dihapus agar pembaca layar otomatis membaca isi teks href yang lebih akurat dan relevan, daripada tertimpa "Golden Monkey Popup"] -->
+              <a href="<?php the_field('popup_link'); ?>" class="btn btn-light text-uppercase fw-bold py-2 px-3">
+                <?php the_field('popup_button_text'); ?>
+              </a>
               <span class="mx-2 fs-5 d-block d-lg-inline">OR</span>
-              <a href="<?php the_field('popup_link2'); ?>" class="btn btn-light text-uppercase fw-bold py-2 px-3"
-                aria-label="Golden Monkey Popup"><?php the_field('popup_button_text2'); ?></a>
+              <a href="<?php the_field('popup_link2'); ?>" class="btn btn-light text-uppercase fw-bold py-2 px-3">
+                <?php the_field('popup_button_text2'); ?>
+              </a>
             </div>
           </div>
         </div>
