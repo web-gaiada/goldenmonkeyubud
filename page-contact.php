@@ -172,7 +172,53 @@ get_header();
         outline-offset: -3px;
         box-shadow: 0 0 0 4px rgba(180, 3, 4, 0.4) !important;
     }
+    /* Restyling Pesan Error Form (CF7) agar rapi */
+    div.wpcf7-response-output {
+        margin: 0 0 1.5rem 0 !important;
+        padding: 1rem !important;
+        border-radius: 4px !important;
+        border: 1px solid #dc3545 !important;
+        background-color: #fff8f8 !important;
+        color: #dc3545 !important;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    /* Warna hijau jika form berhasil */
+    div.wpcf7-mail-sent-ok {
+        border-color: #00b14f !important;
+        background-color: #f0fff4 !important;
+        color: #00aa13 !important;
+    }
 </style>
+
+<script>
+    // Skrip untuk Memindahkan pesan respon form CF7 ke atas tombol submit
+    document.addEventListener('DOMContentLoaded', moveCf7Response);
+    document.addEventListener('wpcf7invalid', moveCf7Response);
+    document.addEventListener('wpcf7spam', moveCf7Response);
+    document.addEventListener('wpcf7mailsent', moveCf7Response);
+    document.addEventListener('wpcf7mailfailed', moveCf7Response);
+    document.addEventListener('wpcf7submit', moveCf7Response);
+
+    function moveCf7Response() {
+        var forms = document.querySelectorAll('.wpcf7-form');
+        forms.forEach(function(form) {
+            var response = form.querySelector('.wpcf7-response-output');
+            var submitBtn = form.querySelector('.wpcf7-submit');
+            
+            if (response && submitBtn) {
+                // Biasanya tombol dibungkus elemen <p> atau <div> dalam WP Editor
+                var parent = submitBtn.parentNode;
+                if (parent && parent.className !== 'wpcf7-form') {
+                    form.insertBefore(response, parent);
+                } else {
+                    form.insertBefore(response, submitBtn);
+                }
+            }
+        });
+    }
+</script>
 
 <?php get_template_part('template-parts/footer', 'banner'); ?>
 
