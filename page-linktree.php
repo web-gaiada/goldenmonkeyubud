@@ -44,10 +44,15 @@
       align-items: center;
     }
 
+    .linktree-title {
+      color: var(--brand-red);
+    }
+
     .linktree-header {
       width: 100%;
       text-align: center;
       margin-bottom: 30px;
+      color: var(--brand-red);
     }
 
     .linktree-logo {
@@ -55,6 +60,7 @@
       height: auto;
       margin: 0 auto;
       transition: transform 0.3s ease;
+      color: var(--brand-red);
     }
 
     .linktree-logo:hover {
