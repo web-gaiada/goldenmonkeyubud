@@ -35,6 +35,20 @@
     filter: brightness(1.2);
     /* Membuat warna ikon lebih "pop" atau terang */
   }
+
+  /* Hover State untuk Alamat, Nomor Kontak, dan Email Footer */
+  .footer-address-link,
+  .footer-contact-link {
+    transition: color 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .footer-address-link:hover,
+  .footer-address-link:hover p,
+  .footer-contact-link:hover,
+  .footer-contact-link:hover span {
+    color: #fca311 !important; /* Warna aksen keemasan terang */
+  }
 </style>
 
 <div class="bg-footer text-white white-link" style="background-color: #6f0100 !important;">
@@ -46,7 +60,9 @@
           <div class="col-12 col-md-6 mb-4 mb-md-0">
             <h4 class="text-white title-footer">Golden Monkey Ubud</h4>
             <div class="pe-md-4 address-text">
-              <?php echo wpautop(get_field('address_ubud', 'option')); ?>
+              <a href="<?php echo esc_url(get_field('google_maps_url_ubud', 'option')); ?>" target="_blank" class="footer-address-link text-white text-decoration-none d-block">
+                <?php echo wpautop(get_field('address_ubud', 'option')); ?>
+              </a>
               <div class="mt-3">
                 <p class="mt-3 fw-bold">
                   <?php echo get_field('operational_hours_ubud', 'option'); ?>
@@ -76,7 +92,9 @@
           <div class="col-12 col-md-6">
             <h4 class="text-white title-footer">Golden Monkey Sanur</h4>
             <div class="address-text">
-              <?php echo wpautop(get_field('address_sanur', 'option')); ?>
+              <a href="<?php echo esc_url(get_field('google_maps_url_sanur', 'option')); ?>" target="_blank" class="footer-address-link text-white text-decoration-none d-block">
+                <?php echo wpautop(get_field('address_sanur', 'option')); ?>
+              </a>
               <div class="mt-3">
                 <p class="mt-3 fw-bold">
                   <?php echo get_field('operational_hours_sanur', 'option'); ?>
