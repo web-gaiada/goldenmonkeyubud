@@ -56,6 +56,20 @@ if (have_rows('jumbotron', $jumbotron_source)): ?>
             background-color: #000;
         }
 
+        /* Hover Behavior yang identik dengan Reservation Menu Navbar */
+        .btn-reserve {
+            background: #b40304;
+            color: #fff !important;
+            border: 1px solid #b40304;
+            transition: all 0.3s ease;
+        }
+
+        .btn-reserve:hover {
+            background: #fff !important;
+            color: #b40304 !important;
+            border-color: #b40304 !important;
+        }
+
         .letter-spacing-2 {
             letter-spacing: 2px;
         }
