@@ -105,7 +105,7 @@ if (has_post_thumbnail()) {
 						
 						<?php if (!empty($prev_post)): ?>
 							<!-- Mengubah SPAN menjadi tag A utuh agar interaktif seluruh area kotaknya -->
-							<a href="<?php echo esc_url($prev_permalink); ?>" id="span-prev-article" class="nav-previous d-flex flex-column justify-content-between w-50 p-4 text-center text-lg-start text-decoration-none text-dark article-nav-link">
+							<a href="<?php echo esc_url($prev_permalink); ?>" id="span-prev-article" class="nav-previous d-flex flex-column justify-content-between w-100 w-lg-50 p-4 text-center text-lg-start text-decoration-none text-dark article-nav-link">
 								<div class="mb-3">
 									<span class="meta-nav fs-5 text-nav">&larr;</span> <span class="text-muted text-nav fw-bold text-uppercase" style="font-size:0.85rem;">Previous</span>
 								</div>
@@ -114,11 +114,11 @@ if (has_post_thumbnail()) {
 								</div>
 							</a>
 						<?php else: ?>
-							<span id="span-prev-article" class="nav-previous d-block w-50 p-4"></span>
+							<span id="span-prev-article" class="nav-previous d-block w-100 w-lg-50 p-4"></span>
 						<?php endif; ?>
 
 						<?php if (!empty($next_post)): ?>
-							<a href="<?php echo esc_url($next_permalink); ?>" id="span-next-article" class="nav-next d-flex flex-column justify-content-between w-50 p-4 text-center text-lg-end text-decoration-none text-dark article-nav-link border-start">
+							<a href="<?php echo esc_url($next_permalink); ?>" id="span-next-article" class="nav-next d-flex flex-column justify-content-between w-100 w-lg-50 p-4 text-center text-lg-end text-decoration-none text-dark article-nav-link border-start-lg">
 								<div class="mb-3">
 									<span class="text-muted text-nav fw-bold text-uppercase" style="font-size:0.85rem;">Next</span> <span class="meta-nav fs-5 text-nav">&rarr;</span>
 								</div>
@@ -127,7 +127,7 @@ if (has_post_thumbnail()) {
 								</div>
 							</a>
 						<?php else: ?>
-							<span id="span-next-article" class="nav-next d-block w-50 p-4 border-start"></span>
+							<span id="span-next-article" class="nav-next d-block w-100 w-lg-50 p-4 border-start-lg"></span>
 						<?php endif; ?>
 					</nav>
 				</div>
@@ -154,6 +154,14 @@ if (has_post_thumbnail()) {
 	.text-brand, .text-nav {
 		color: #111;
 		transition: color 0.3s ease;
+	}
+
+	/* Penyesuaian responsif batas dan susunan kotak ketika HP/Tablet */
+	@media (max-width: 991.98px) {
+		.nav-next.border-start-lg {
+			border-left: none !important;
+			border-top: 1px solid #dee2e6 !important;
+		}
 	}
 </style>
 
