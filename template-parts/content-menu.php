@@ -60,7 +60,8 @@
               <div class="col-sm-12 col-lg-6 mb-4">
                 <div class="card h-100">
                   <div class="card-body">
-                    <h3 class="card-title fs-2 mb-4"><?php the_sub_field('menu_title'); ?></h3>
+                    <!-- [A11Y FIXED: Ubah H3 menjadi H2 agar tidak skip level dari H1 di header] -->
+                    <h2 class="card-title fs-2 mb-4"><?php the_sub_field('menu_title'); ?></h2>
                     <?php if (have_rows('products')): ?>
                       <?php while (have_rows('products')):
                         the_row(); ?>
@@ -112,7 +113,8 @@
               <div class="col-sm-12 col-lg-6 mb-4">
                 <div class="card h-100">
                   <div class="card-body">
-                    <h3 class="card-title fs-2 mb-4"><?php the_sub_field('menu_title'); ?></h3>
+                    <!-- [A11Y FIXED: Ubah H3 menjadi H2 agar tidak skip level dari H1 di header] -->
+                    <h2 class="card-title fs-2 mb-4"><?php the_sub_field('menu_title'); ?></h2>
                     <?php if (have_rows('products')): ?>
                       <?php while (have_rows('products')):
                         the_row(); ?>
@@ -157,13 +159,19 @@
     border-color: #b40304 !important;
   }
 
-  #menuTab .nav-link.active,
-  #menuTab .nav-link:focus {
+  #menuTab .nav-link.active {
     background-color: #b40304 !important;
     color: #fff !important;
     border-color: transparent !important;
     outline: none !important;
     box-shadow: none !important;
+  }
+
+  /* [A11Y FIXED: Pisahkan style tab keyboard agar mendapatkan cincin sorot yang terlihat jelas bagi tuna netra atau pengguna tab] */
+  #menuTab .nav-link:focus-visible {
+    outline: 3px solid #111 !important;
+    outline-offset: -3px;
+    box-shadow: 0 0 0 4px rgba(180, 3, 4, 0.4) !important;
   }
 
   .list-dotted small {
