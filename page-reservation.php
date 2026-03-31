@@ -65,7 +65,7 @@ $map_subtitle = get_field('map_subtitle', 'option');
 
                     <!-- Map for Ubud -->
                     <div class="mt-5 pt-5 border-top text-center">
-                        <h3 class="mb-4 fw-bold"><?php echo $map_title; ?> - Ubud</h3>
+                        <h2 class="mb-4 fw-bold"><?php echo $map_title; ?> - Ubud</h2>
                         <?php if ($map_subtitle): ?>
                             <p class="fs-5"><?php echo $map_subtitle; ?></p>
                         <?php endif; ?>
@@ -175,29 +175,29 @@ $map_subtitle = get_field('map_subtitle', 'option');
 </style>
 
 <script>
-  // Script to handle auto-tab from URL parameter
-  document.addEventListener('DOMContentLoaded', function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const loc = urlParams.get('loc');
-    
-    if (loc === 'sanur') {
-      const sanurBtn = document.getElementById('res-sanur-tab');
-      if (sanurBtn && typeof bootstrap !== 'undefined') {
-        const tab = new bootstrap.Tab(sanurBtn);
-        tab.show();
-      } else if (sanurBtn) {
-        sanurBtn.click();
-      }
-    } else if (loc === 'ubud') {
-      const ubudBtn = document.getElementById('res-ubud-tab');
-      if (ubudBtn && typeof bootstrap !== 'undefined') {
-        const tab = new bootstrap.Tab(ubudBtn);
-        tab.show();
-      } else if (ubudBtn) {
-        ubudBtn.click();
-      }
-    }
-  });
+    // Script to handle auto-tab from URL parameter
+    document.addEventListener('DOMContentLoaded', function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const loc = urlParams.get('loc');
+
+        if (loc === 'sanur') {
+            const sanurBtn = document.getElementById('res-sanur-tab');
+            if (sanurBtn && typeof bootstrap !== 'undefined') {
+                const tab = new bootstrap.Tab(sanurBtn);
+                tab.show();
+            } else if (sanurBtn) {
+                sanurBtn.click();
+            }
+        } else if (loc === 'ubud') {
+            const ubudBtn = document.getElementById('res-ubud-tab');
+            if (ubudBtn && typeof bootstrap !== 'undefined') {
+                const tab = new bootstrap.Tab(ubudBtn);
+                tab.show();
+            } else if (ubudBtn) {
+                ubudBtn.click();
+            }
+        }
+    });
 </script>
 
 <?php get_template_part('template-parts/footer', 'banner'); ?>

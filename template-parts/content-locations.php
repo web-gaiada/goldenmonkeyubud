@@ -77,17 +77,11 @@ $locations = array(
                             </div>
                         <?php endif; ?>
 
-                        <div class="row gy-4">
+                        <div id="maps-address" class="row gy-4">
                             <!-- Left Column: Map -->
-                            <div class="col-lg-7">
-                                <div class="ratio ratio-16x9 shadow-sm rounded border overflow-hidden bg-light">
+                            <div class="col-lg-7 d-flex">
+                                <div class="shadow-sm rounded border overflow-hidden bg-light w-100 map-container">
                                     <?php echo $loc['maps']; ?>
-                                </div>
-                                <div class="mt-3">
-                                    <a href="<?php echo $loc['map_url']; ?>" target="_blank"
-                                        class="btn btn-outline-dark rounded-0 px-4 py-2">
-                                        <i class="fas fa-directions me-2"></i> Get Directions
-                                    </a>
                                 </div>
                             </div>
 
@@ -99,6 +93,12 @@ $locations = array(
                                     <div class="mb-4">
                                         <h6 class="text-muted text-uppercase small fw-bold mb-2">Address</h6>
                                         <div class="fs-5"><?php echo wpautop($loc['address']); ?></div>
+                                        <div class="mt-3">
+                                            <a href="<?php echo $loc['map_url']; ?>" target="_blank"
+                                                class="btn btn-outline-dark rounded-0 px-4 py-2">
+                                                <i class="fas fa-directions me-2"></i> Get Directions
+                                            </a>
+                                        </div>
                                     </div>
 
                                     <div class="mb-4">
@@ -140,13 +140,27 @@ $locations = array(
         border-color: #b40304 !important;
     }
 
-    #locationTab .nav-link.active,
-    #locationTab .nav-link:focus {
+    #locationTab .nav-link.active {
         background-color: #b40304 !important;
         color: #fff !important;
         border-color: transparent !important;
         outline: none !important;
         box-shadow: none !important;
+    }
+
+    /* Peningkatan aksesibilitas indikator fokus Keyboard */
+    #locationTab .nav-link:focus-visible {
+        outline: 3px solid #111 !important;
+        outline-offset: -3px;
+        box-shadow: 0 0 0 4px rgba(180, 3, 4, 0.4) !important;
+    }
+
+    /* Modifikasi Peta agar mengisi ketinggian penuh mengikuti kolom sebelah kanannya secara mulus */
+    .map-container iframe {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 400px;
+        display: block;
     }
 
     .text-danger {
