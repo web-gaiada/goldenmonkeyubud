@@ -45,13 +45,19 @@ get_header();
             border-color: #b40304 !important;
           }
 
-          .delivery-tabs .nav-link.active,
-          .delivery-tabs .nav-link:focus {
+          .delivery-tabs .nav-link.active {
             background-color: #b40304 !important;
             color: #fff !important;
             border-color: transparent !important;
             outline: none !important;
             box-shadow: none !important;
+          }
+
+          /* [A11Y FIXED]: Indikator border fokus untuk interaksi Keyboard */
+          .delivery-tabs .nav-link:focus-visible {
+            outline: 3px solid #111 !important;
+            outline-offset: -3px;
+            box-shadow: 0 0 0 4px rgba(180, 3, 4, 0.4) !important;
           }
 
           /* Delivery Card Styling */
@@ -152,7 +158,8 @@ get_header();
                       <div id="Delivery_Gloria_Food">
                         <span data-glf-cuid="9e72489a-49f1-496d-a753-c535e7babe5b"
                           data-glf-ruid="196905ff-9f7c-47fb-83ca-d08ba5e042f1">
-                          <div class="d-block delivery-trigger" style="cursor:pointer;">
+                          <!-- [A11Y FIXED: Tambahkan tabindex dan role agar div clickable dibaca screen reader] -->
+                          <div class="d-block delivery-trigger" style="cursor:pointer;" tabindex="0" role="button" aria-label="Order Delivery via GloriaFood">
                             <img src="<?php echo get_template_directory_uri(); ?>/images/home-delivery.png"
                               alt="Home Delivery" class="img-fluid img-client">
                           </div>
@@ -160,7 +167,7 @@ get_header();
                       </div>
                     </div>
                     <img src="<?php echo get_template_directory_uri(); ?>/images/delivery-background.jpg"
-                      class="img-cover position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
+                      class="img-cover position-absolute top-0 start-0 w-100 h-100 object-fit-cover" alt="Background">
                   </div>
                 </div>
 
@@ -183,12 +190,13 @@ get_header();
                       <div
                         class="<?php echo $bg_class; ?> position-relative delivery-card-container d-flex align-items-center justify-content-center">
                         <div class="delivery-card-content text-center w-100">
+                          <!-- [A11Y FIXED: Tambahkan aria-label agar tidak ambigu dan string check WP image param] -->
                           <a rel="nofollow" id="<?php echo esc_attr($banner_id); ?>"
                             href="<?php the_sub_field('banner_link'); ?>" class="text-white stretched-link delivery-trigger"
-                            target="_blank">
+                            target="_blank" aria-label="Order Delivery via <?php echo esc_attr($banner_id); ?>">
                             <?php
                             $delivery_image = get_sub_field('delivery_image');
-                            echo wp_get_attachment_image($delivery_image, "full", "", array("class" => "img-fluid img-client"));
+                            echo wp_get_attachment_image($delivery_image, "full", false, array("class" => "img-fluid img-client"));
                             ?>
                           </a>
                         </div>
@@ -225,12 +233,13 @@ get_header();
                       <div
                         class="<?php echo $bg_class; ?> position-relative delivery-card-container d-flex align-items-center justify-content-center">
                         <div class="delivery-card-content text-center w-100">
+                          <!-- [A11Y FIXED: Tambahkan aria-label agar tidak ambigu dan string check WP image param] -->
                           <a rel="nofollow" id="<?php echo esc_attr($banner_id); ?>"
                             href="<?php the_sub_field('banner_link'); ?>" class="text-white stretched-link delivery-trigger"
-                            target="_blank">
+                            target="_blank" aria-label="Order Delivery via <?php echo esc_attr($banner_id); ?>">
                             <?php
                             $delivery_image = get_sub_field('delivery_image');
-                            echo wp_get_attachment_image($delivery_image, "full", "", array("class" => "img-fluid img-client"));
+                            echo wp_get_attachment_image($delivery_image, "full", false, array("class" => "img-fluid img-client"));
                             ?>
                           </a>
                         </div>
