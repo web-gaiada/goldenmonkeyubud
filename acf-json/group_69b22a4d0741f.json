@@ -233,6 +233,48 @@
             "preview_size": "medium"
         },
         {
+            "key": "field_69cb3edac24b4",
+            "label": "Grab Food Url",
+            "name": "grab_food_url_ubud",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_69cb3ed8c24b3",
+            "label": "Go Food Url",
+            "name": "go_food_url_ubud",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_69b234fac52c0",
             "label": "Sanur",
             "name": "",
@@ -435,6 +477,48 @@
             "new_lines": ""
         },
         {
+            "key": "field_69cb3e9fc24b1",
+            "label": "Grab Food Url",
+            "name": "grab_food_url_sanur",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_69cb3ec3c24b2",
+            "label": "Go Food Url",
+            "name": "go_food_url_sanur",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_69b37a49299d7",
             "label": "Atmosphere Gallery Sanur",
             "name": "atmosphere_gallery_sanur",
@@ -567,5 +651,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1774858113
+    "modified": 1774927619
 }

@@ -188,8 +188,30 @@
 </style>
 
 <script>
-  // Script to re-layout Masonry when switching tabs
+  // Script to handle auto-tab from URL parameter
   document.addEventListener('DOMContentLoaded', function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const loc = urlParams.get('loc');
+    
+    if (loc === 'sanur') {
+      const sanurBtn = document.getElementById('sanur-tab');
+      if (sanurBtn && typeof bootstrap !== 'undefined') {
+        const tab = new bootstrap.Tab(sanurBtn);
+        tab.show();
+      } else if (sanurBtn) {
+        sanurBtn.click();
+      }
+    } else if (loc === 'ubud') {
+      const ubudBtn = document.getElementById('ubud-tab');
+      if (ubudBtn && typeof bootstrap !== 'undefined') {
+        const tab = new bootstrap.Tab(ubudBtn);
+        tab.show();
+      } else if (ubudBtn) {
+        ubudBtn.click();
+      }
+    }
+
+    // Script to re-layout Masonry when switching tabs
     var tabEls = document.querySelectorAll('button[data-bs-toggle="pill"]');
     tabEls.forEach(function (tabEl) {
       tabEl.addEventListener('shown.bs.tab', function (event) {
