@@ -42,12 +42,13 @@
     transition: color 0.3s ease;
     text-decoration: none;
   }
-  
+
   .footer-address-link:hover,
   .footer-address-link:hover p,
   .footer-contact-link:hover,
   .footer-contact-link:hover span {
-    color: #fca311 !important; /* Warna aksen keemasan terang */
+    font-weight: bold !important;
+    text-decoration: underline !important;
   }
 </style>
 
@@ -60,7 +61,8 @@
           <div class="col-12 col-md-6 mb-4 mb-md-0">
             <h4 class="text-white title-footer">Golden Monkey Ubud</h4>
             <div class="pe-md-4 address-text">
-              <a href="<?php echo esc_url(get_field('google_maps_url_ubud', 'option')); ?>" target="_blank" class="footer-address-link text-white text-decoration-none d-block">
+              <a href="<?php echo esc_url(get_field('google_maps_url_ubud', 'option')); ?>" target="_blank"
+                class="footer-address-link text-white text-decoration-none d-block">
                 <?php echo wpautop(get_field('address_ubud', 'option')); ?>
               </a>
               <div class="mt-3">
@@ -92,7 +94,8 @@
           <div class="col-12 col-md-6">
             <h4 class="text-white title-footer">Golden Monkey Sanur</h4>
             <div class="address-text">
-              <a href="<?php echo esc_url(get_field('google_maps_url_sanur', 'option')); ?>" target="_blank" class="footer-address-link text-white text-decoration-none d-block">
+              <a href="<?php echo esc_url(get_field('google_maps_url_sanur', 'option')); ?>" target="_blank"
+                class="footer-address-link text-white text-decoration-none d-block">
                 <?php echo wpautop(get_field('address_sanur', 'option')); ?>
               </a>
               <div class="mt-3">
