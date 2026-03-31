@@ -53,11 +53,6 @@ $map_subtitle = get_field('map_subtitle', 'option');
                                     scrolling="auto" class="resdiary-iframe"
                                     style="width:100%; min-height: 850px; border:none; display: block;"></iframe>
                             </div>
-                            <div class="mt-4">
-                                <a href="<?php echo get_field('reservation_url_ubud', 'option'); ?>" target="_blank"
-                                    class="btn btn-dark btn-lg rounded-0 px-5 py-3 fw-bold text-uppercase">Open in New
-                                    Window</a>
-                            </div>
                         <?php else: ?>
                             <div class="alert alert-info">Reservation link for Ubud is not set yet.</div>
                         <?php endif; ?>
@@ -94,11 +89,6 @@ $map_subtitle = get_field('map_subtitle', 'option');
                                 <iframe src="<?php echo get_field('reservation_url_sanur', 'option'); ?>" frameborder="0"
                                     scrolling="auto" class="resdiary-iframe"
                                     style="width:100%; min-height: 850px; border:none; display: block;"></iframe>
-                            </div>
-                            <div class="mt-4">
-                                <a href="<?php echo get_field('reservation_url_sanur', 'option'); ?>" target="_blank"
-                                    class="btn btn-dark btn-lg rounded-0 px-5 py-3 fw-bold text-uppercase">Open in New
-                                    Window</a>
                             </div>
                         <?php else: ?>
                             <div class="alert alert-info">Reservation link for Sanur is not set yet.</div>
