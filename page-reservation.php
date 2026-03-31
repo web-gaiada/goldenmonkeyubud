@@ -51,7 +51,7 @@ $map_subtitle = get_field('map_subtitle', 'option');
                             <div class="reservation-form-container bg-white shadow-sm rounded mb-4 overflow-hidden">
                                 <iframe src="<?php echo get_field('reservation_url_ubud', 'option'); ?>" frameborder="0"
                                     scrolling="auto" class="resdiary-iframe"
-                                    style="width:100%; min-height: 850px; border:none; display: block;"></iframe>
+                                    style="width:100%; min-height: 650px; border:none; display: block;"></iframe>
                             </div>
                         <?php else: ?>
                             <div class="alert alert-info">Reservation link for Ubud is not set yet.</div>
@@ -88,7 +88,7 @@ $map_subtitle = get_field('map_subtitle', 'option');
                             <div class="reservation-form-container bg-white shadow-sm rounded mb-4 overflow-hidden">
                                 <iframe src="<?php echo get_field('reservation_url_sanur', 'option'); ?>" frameborder="0"
                                     scrolling="auto" class="resdiary-iframe"
-                                    style="width:100%; min-height: 850px; border:none; display: block;"></iframe>
+                                    style="width:100%; min-height: 650px; border:none; display: block;"></iframe>
                             </div>
                         <?php else: ?>
                             <div class="alert alert-info">Reservation link for Sanur is not set yet.</div>
