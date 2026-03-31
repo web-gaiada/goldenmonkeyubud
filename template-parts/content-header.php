@@ -1,7 +1,7 @@
 <div class="position-relative overflow-hidden">
   <!-- Header Image -->
   <?php $header_image = get_field('header_image'); ?>
-  <?php echo wp_get_attachment_image($header_image, "full", "", array("class" => "img-header w-100 h-100 object-fit-cover")); ?>
+  <?php echo wp_get_attachment_image($header_image, "full", false, array("class" => "img-header w-100 h-100 object-fit-cover")); ?>
 
   <!-- Background Overlay -->
   <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.4); z-index: 1;"></div>
@@ -17,7 +17,8 @@
         <?php while (have_rows('header_button')):
           the_row(); ?>
           <a href="<?php bloginfo('url') ?><?php the_sub_field('button_link'); ?>"
-            class="btn btn-outline-light rounded-0 btn-lg px-4 py-2 mx-2"><?php the_sub_field('button_text'); ?></a>
+            class="btn btn-outline-light rounded-0 btn-lg px-4 py-2 mx-2"
+            aria-label="<?php echo esc_attr(get_sub_field('button_text')) . ' - ' . esc_attr(get_field('header_title')); ?>"><?php the_sub_field('button_text'); ?></a>
         <?php endwhile; ?>
       </div>
     <?php endif; ?>

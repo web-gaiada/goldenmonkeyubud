@@ -33,7 +33,8 @@
                                     <?php while (have_rows('article_button')):
                                         the_row(); ?>
                                         <a href="<?php bloginfo('url') ?><?php the_sub_field('button_link'); ?>"
-                                            class="btn btn-outline-dark rounded-0 px-4 py-2 fw-bold text-uppercase"><?php the_sub_field('button_text'); ?></a>
+                                            class="btn btn-outline-dark rounded-0 px-4 py-2 fw-bold text-uppercase"
+                                            aria-label="<?php echo esc_attr(get_sub_field('button_text')); ?> about <?php echo esc_attr(get_sub_field('article_title')); ?>"><?php the_sub_field('button_text'); ?></a>
                                     <?php endwhile; ?>
                                 </div>
                             <?php endif; ?>
@@ -43,7 +44,7 @@
                     <div
                         class="col-12 col-lg-6 <?php if ($n % 2 == 0): ?>order-1 order-lg-1<?php else: ?>order-1 order-lg-2<?php endif; ?>">
                         <?php $article_img = get_sub_field('article_image'); ?>
-                        <?php echo wp_get_attachment_image($article_img, "full", "", array("class" => "img-cover w-100 h-100", "style" => "object-fit: cover; min-height: 400px;")); ?>
+                        <?php echo wp_get_attachment_image($article_img, "full", false, array("class" => "img-cover w-100 h-100", "style" => "object-fit: cover; min-height: 400px;")); ?>
                     </div>
                 </div>
             <?php else: ?>
@@ -59,7 +60,7 @@
                         </div>
                         <?php $article_img = get_sub_field('article_image'); ?>
                         <div class="text-center mt-4">
-                            <?php echo wp_get_attachment_image($article_img, "full", "", array("class" => "img-fluid shadow-sm")); ?>
+                            <?php echo wp_get_attachment_image($article_img, "full", false, array("class" => "img-fluid shadow-sm")); ?>
                         </div>
                     </div>
                 </div>
