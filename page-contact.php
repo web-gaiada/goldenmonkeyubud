@@ -201,6 +201,17 @@ get_header();
     #contactTabContent .card .mb-4 a.text-dark:hover {
         color: #b40304 !important; /* Warna identitas brand/Monash Red */
     }
+
+    /* Trik agar Input bertipe Number benar-benar identik 100% dengan text (Tanpa panah Spinner) */
+    .wpcf7-form input[type="number"] {
+        -moz-appearance: textfield !important;
+        appearance: textfield !important;
+    }
+    .wpcf7-form input[type="number"]::-webkit-inner-spin-button,
+    .wpcf7-form input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none !important;
+        margin: 0 !important;
+    }
 </style>
 
 <script>
