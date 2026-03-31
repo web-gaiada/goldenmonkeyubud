@@ -13,11 +13,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="profile" href="https://gmpg.org/xfn/11">
   <?php wp_head(); ?>
+  <!-- Muat FontAwesome karena tema tidak memuatnya secara default via wp_head() -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     :root {
       --brand-red: #b40304;
       --brand-dark: #1a1a1a;
-      --bg-light: #fdfdfd;
+      --bg-light: #fafafa;
       --text-main: #333333;
       --text-muted: #666666;
       --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.06);
@@ -72,42 +74,30 @@
       margin-bottom: 30px;
     }
 
-    .linktree-tabs-nav {
-      background-color: #fff;
-      border-radius: 100px;
-      padding: 5px;
-      box-shadow: var(--shadow-soft);
-      margin-bottom: 25px;
-      display: flex;
-      border: 1px solid #f0f0f0;
-      list-style: none;
-    }
-
-    .linktree-tabs-nav .nav-item {
-      flex: 1;
-    }
-
-    .linktree-tabs-nav .nav-link {
-      border-radius: 100px !important;
-      padding: 12px 10px;
-      color: var(--text-muted);
-      font-weight: 700;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      border: none;
-      background: transparent;
+    #linktreeTab {
       width: 100%;
-      display: block;
-      text-align: center;
     }
 
-    .linktree-tabs-nav .nav-link.active {
-      background-color: var(--brand-red) !important;
+    #linktreeTab .nav-link {
+      color: #000;
+      background-color: #fff;
+      border-color: #dee2e6 !important;
+      transition: all 0.3s ease;
+    }
+
+    #linktreeTab .nav-link:hover:not(.active) {
+      background-color: #f8f9fa !important;
+      color: #b40304 !important;
+      border-color: #b40304 !important;
+    }
+
+    #linktreeTab .nav-link.active,
+    #linktreeTab .nav-link:focus {
+      background-color: #b40304 !important;
       color: #fff !important;
-      box-shadow: 0 4px 12px rgba(180, 3, 4, 0.25);
+      border-color: transparent !important;
+      outline: none !important;
+      box-shadow: none !important;
     }
 
     .linktree-buttons-list {
@@ -241,25 +231,45 @@
 
     <header class="linktree-header">
       <?php
-      $custom_logo_id = get_theme_mod('custom_logo');
-      if ($custom_logo_id) {
-        $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
-        echo '<a href="' . home_url('/') . '"><img src="' . esc_url($logo[0]) . '" alt="' . get_bloginfo('name') . '" class="linktree-logo"></a>';
+      // 1. Cek local page field ATAU global option field
+      $linktree_logo = get_field('linktree_page_logo') ?: get_field('linktree_page_logo', 'option');
+
+      if ($linktree_logo) {
+        // Cek format return (Array / ID / URL string)
+        if (is_array($linktree_logo)) {
+            $logo_url = $linktree_logo['url'];
+        } elseif (is_numeric($linktree_logo)) {
+            $logo_src = wp_get_attachment_image_src($linktree_logo, 'full');
+            $logo_url = $logo_src ? $logo_src[0] : '';
+        } else {
+            $logo_url = $linktree_logo;
+        }
+
+        if ($logo_url) {
+            echo '<a href="' . home_url('/') . '"><img src="' . esc_url($logo_url) . '" alt="' . get_bloginfo('name') . '" class="linktree-logo"></a>';
+        }
       } else {
-        echo '<a href="' . home_url('/') . '" style="text-decoration:none;"><h1 class="linktree-title">' . get_bloginfo('name') . '</h1></a>';
+        // 2. Fallback to Theme Custom Logo
+        $custom_logo_id = get_theme_mod('custom_logo');
+        if ($custom_logo_id) {
+          $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
+          echo '<a href="' . home_url('/') . '"><img src="' . esc_url($logo[0]) . '" alt="' . get_bloginfo('name') . '" class="linktree-logo"></a>';
+        } else {
+          echo '<a href="' . home_url('/') . '" style="text-decoration:none;"><h1 class="linktree-title">' . get_bloginfo('name') . '</h1></a>';
+        }
       }
       ?>
     </header>
 
     <div class="linktree-wrapper">
 
-      <ul class="nav linktree-tabs-nav" id="linktreeTab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="tab-ubud" data-bs-toggle="pill" data-bs-target="#content-ubud"
+      <ul class="nav nav-pills justify-content-center mb-4 w-100" id="linktreeTab" role="tablist">
+        <li class="nav-item flex-fill text-center" role="presentation">
+          <button class="nav-link w-100 active py-3 fw-bold text-uppercase rounded-0 border" id="tab-ubud" data-bs-toggle="pill" data-bs-target="#content-ubud"
             type="button" role="tab">Ubud</button>
         </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="tab-sanur" data-bs-toggle="pill" data-bs-target="#content-sanur" type="button"
+        <li class="nav-item flex-fill text-center" role="presentation">
+          <button class="nav-link w-100 py-3 fw-bold text-uppercase rounded-0 border" id="tab-sanur" data-bs-toggle="pill" data-bs-target="#content-sanur" type="button"
             role="tab">Sanur</button>
         </li>
       </ul>
