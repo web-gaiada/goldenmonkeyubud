@@ -218,6 +218,28 @@ get_header();
             }
         });
     }
+
+    // Trik Otomatis untuk menyamakan kelas gaya input tipe "number" / "tel" persis dengan tipe "text"
+    document.addEventListener('DOMContentLoaded', function() {
+        var textInput = document.querySelector('.wpcf7-form input[type="text"], .wpcf7-form input[type="email"]');
+        var numberInputs = document.querySelectorAll('.wpcf7-form input[type="number"], .wpcf7-form input[type="tel"]');
+        
+        if (textInput && numberInputs.length > 0) {
+            // Saring dan ambil semua kelas kosmetik (seperti form-control, py-2, bg-light) 
+            var baseClasses = textInput.className.split(' ').filter(function(c) {
+                return !c.startsWith('wpcf7');
+            }).join(' ');
+
+            // Suntikkan kelas yang sama ke tipe angka
+            numberInputs.forEach(function(nInput) {
+                nInput.className = nInput.className + ' ' + baseClasses;
+                // Cadangan paksaan seandainya bootstrap border rewel
+                if(!nInput.classList.contains('form-control')) {
+                    nInput.classList.add('form-control');
+                }
+            });
+        }
+    });
 </script>
 
 <?php get_template_part('template-parts/footer', 'banner'); ?>
