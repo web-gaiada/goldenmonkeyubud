@@ -39,18 +39,18 @@ $locations = array(
             <ul class="nav nav-pills justify-content-center mb-5" id="locationTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active px-5 py-3 fw-bold text-uppercase rounded-0 border" id="ubud-loc-tab"
-                        data-bs-toggle="pill" data-bs-target="#ubud-loc" type="button" role="tab">Ubud</button>
+                        data-bs-toggle="pill" data-bs-target="#ubud-loc" type="button" role="tab" aria-controls="ubud-loc" aria-selected="true">Ubud</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link px-5 py-3 fw-bold text-uppercase rounded-0 border" id="sanur-loc-tab"
-                        data-bs-toggle="pill" data-bs-target="#sanur-loc" type="button" role="tab">Sanur</button>
+                        data-bs-toggle="pill" data-bs-target="#sanur-loc" type="button" role="tab" aria-controls="sanur-loc" aria-selected="false">Sanur</button>
                 </li>
             </ul>
 
             <div class="tab-content" id="locationTabContent">
                 <?php foreach ($locations as $key => $loc): ?>
                     <div class="tab-pane fade <?php echo ($key == 'ubud') ? 'show active' : ''; ?>"
-                        id="<?php echo $key; ?>-loc" role="tabpanel">
+                        id="<?php echo $key; ?>-loc" role="tabpanel" aria-labelledby="<?php echo $key; ?>-loc-tab">
 
                         <!-- Description Article -->
                         <?php if ($loc['description']): ?>
@@ -64,7 +64,7 @@ $locations = array(
                         <!-- Atmosphere Gallery -->
                         <?php if ($loc['gallery']): ?>
                             <div class="mb-5 pb-5 border-bottom">
-                                <h4 style="font-size: 30px;" class="text-center fw-bold mb-4 text-uppercase">Atmosphere</h4>
+                                <h3 style="font-size: 30px;" class="text-center fw-bold mb-4 text-uppercase">Atmosphere</h3>
                                 <div class="row g-3">
                                     <?php foreach ($loc['gallery'] as $image_id): ?>
                                         <div class="col-6 col-md-4">
@@ -81,39 +81,47 @@ $locations = array(
                             <!-- Left Column: Map -->
                             <div class="col-lg-7 d-flex">
                                 <div class="shadow-sm rounded border overflow-hidden bg-light w-100 map-container">
-                                    <?php echo $loc['maps']; ?>
+                                    <?php 
+                                        $map_iframe = $loc['maps'];
+                                        // Add title attribute to iframe for accessibility if not present
+                                        if (strpos($map_iframe, 'title=') === false) {
+                                            $map_title = 'Google Maps location for ' . esc_attr($loc['title']);
+                                            $map_iframe = str_replace('<iframe', '<iframe title="' . $map_title . '"', $map_iframe);
+                                        }
+                                        echo $map_iframe; 
+                                    ?>
                                 </div>
                             </div>
 
                             <!-- Right Column: Info -->
                             <div class="col-lg-5">
                                 <div class="ps-lg-4">
-                                    <h3 class="fw-bold mb-4 text-uppercase"><?php echo $loc['title']; ?></h3>
+                                    <h2 class="fw-bold mb-4 text-uppercase h3"><?php echo $loc['title']; ?></h2>
 
                                     <div class="mb-4">
-                                        <h6 class="text-muted text-uppercase small fw-bold mb-2">Address</h6>
+                                        <h3 class="text-muted text-uppercase small fw-bold mb-2 fs-6">Address</h3>
                                         <div class="fs-5"><?php echo wpautop($loc['address']); ?></div>
                                         <div class="mt-3">
                                             <a href="<?php echo $loc['map_url']; ?>" target="_blank"
                                                 class="btn btn-outline-dark rounded-0 px-4 py-2">
-                                                <i class="fas fa-directions me-2"></i> Get Directions
+                                                <i class="fas fa-directions me-2" aria-hidden="true"></i> Get Directions
                                             </a>
                                         </div>
                                     </div>
 
                                     <div class="mb-4">
-                                        <h6 class="text-muted text-uppercase small fw-bold mb-2">Operating Hours</h6>
+                                        <h3 class="text-muted text-uppercase small fw-bold mb-2 fs-6">Operating Hours</h3>
                                         <div class="fs-5">
                                             <?php echo $loc['hours']; ?>
                                         </div>
                                     </div>
 
                                     <div class="mb-5">
-                                        <h6 class="text-muted text-uppercase small fw-bold mb-2">WhatsApp Contact</h6>
+                                        <h3 class="text-muted text-uppercase small fw-bold mb-2 fs-6">WhatsApp Contact</h3>
                                         <a href="https://api.whatsapp.com/send/?phone=<?php echo $loc['wa']; ?>&text=<?php echo urlencode($loc['wa_text']); ?>"
                                             class="btn btn-success btn-lg rounded-0 px-4 py-3 w-100 fw-bold"
                                             target="_blank">
-                                            <i class="fab fa-whatsapp me-2"></i> Chat on WhatsApp
+                                            <i class="fab fa-whatsapp me-2" aria-hidden="true"></i> Chat on WhatsApp
                                         </a>
                                     </div>
                                 </div>

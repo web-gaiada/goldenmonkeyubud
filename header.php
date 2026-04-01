@@ -284,8 +284,8 @@
       <div class="container px-3">
         <!-- Logo -->
         <a class="navbar-brand me-auto" href="<?php echo esc_url(home_url('/')); ?>">
-          <img src="<?php bloginfo('template_url'); ?>/images/golden-monkey-logo.svg" alt="Logo" class="logo-light">
-          <img src="<?php bloginfo('template_url'); ?>/images/golden-monkey-logo-black.svg" alt="Logo"
+          <img src="<?php bloginfo('template_url'); ?>/images/golden-monkey-logo.svg" alt="Golden Monkey Restaurant Logo" class="logo-light">
+          <img src="<?php bloginfo('template_url'); ?>/images/golden-monkey-logo-black.svg" alt="Golden Monkey Restaurant Logo"
             class="logo-dark d-none">
         </a>
 
