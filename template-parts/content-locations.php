@@ -52,6 +52,11 @@ $locations = array(
                     <div class="tab-pane fade <?php echo ($key == 'ubud') ? 'show active' : ''; ?>"
                         id="<?php echo $key; ?>-loc" role="tabpanel" aria-labelledby="<?php echo $key; ?>-loc-tab">
 
+                        <!-- Location Title -->
+                        <div class="text-center mb-4">
+                            <h2 class="fw-bold text-uppercase display-6"><?php echo $loc['title']; ?></h2>
+                        </div>
+
                         <!-- Description Article -->
                         <?php if ($loc['description']): ?>
                             <div class="text-center mb-5 px-lg-5">
@@ -96,8 +101,6 @@ $locations = array(
                             <!-- Right Column: Info -->
                             <div class="col-lg-5">
                                 <div class="ps-lg-4">
-                                    <h2 class="fw-bold mb-4 text-uppercase h3"><?php echo $loc['title']; ?></h2>
-
                                     <div class="mb-4">
                                         <h3 class="text-muted text-uppercase small fw-bold mb-2 fs-6">Address</h3>
                                         <div class="fs-5"><?php echo wpautop($loc['address']); ?></div>
