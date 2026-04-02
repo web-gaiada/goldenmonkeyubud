@@ -299,3 +299,22 @@ function goldenmonkey_fix_pagination_nav_class($classes, $item) {
 	
 	return array_unique($classes);
 }
+
+/**
+ * Integrasi Rank Math SEO: Gunakan ACF Header Image untuk OG Image di Halaman Arsip
+ */
+add_filter('rank_math/opengraph/facebook/image', 'goldenmonkey_rankmath_archive_image');
+add_filter('rank_math/opengraph/twitter/image', 'goldenmonkey_rankmath_archive_image');
+
+function goldenmonkey_rankmath_archive_image($attachment_url)
+{
+	if (is_archive()) {
+		// Ambil gambar dari ACF Options (sama dengan logika di archive.php)
+		$news_header_img = get_field('header_image_news', 'option');
+
+		if ($news_header_img) {
+			return esc_url($news_header_img);
+		}
+	}
+	return $attachment_url;
+}
