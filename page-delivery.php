@@ -149,27 +149,9 @@ get_header();
           <!-- Ubud Tab -->
           <div class="tab-pane fade show active" id="ubud" role="tabpanel" aria-labelledby="ubud-tab">
             <div class="container-fluid px-0">
-              <div class="row g-3 g-lg-4">
+              <div class="row g-3 g-lg-4 justify-content-center">
                 <!-- Home Delivery (GloriaFood) -->
-                <div class="col-12 col-md-6 col-lg-4">
-                  <div
-                    class="bg-dark position-relative delivery-card-container d-flex align-items-center justify-content-center">
-                    <div class="delivery-card-content text-center w-100">
-                      <div id="Delivery_Gloria_Food">
-                        <span data-glf-cuid="9e72489a-49f1-496d-a753-c535e7babe5b"
-                          data-glf-ruid="196905ff-9f7c-47fb-83ca-d08ba5e042f1">
-                          <!-- [A11Y FIXED: Tambahkan tabindex dan role agar div clickable dibaca screen reader] -->
-                          <div class="d-block delivery-trigger" style="cursor:pointer;" tabindex="0" role="button" aria-label="Order Delivery via GloriaFood">
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/home-delivery.png"
-                              alt="Home Delivery" class="img-fluid img-client">
-                          </div>
-                        </span>
-                      </div>
-                    </div>
-                    <img src="<?php echo get_template_directory_uri(); ?>/images/delivery-background.jpg"
-                      class="img-cover position-absolute top-0 start-0 w-100 h-100 object-fit-cover" alt="Background">
-                  </div>
-                </div>
+
 
                 <?php if (have_rows('image_list')): ?>
                   <?php while (have_rows('image_list')):
@@ -213,7 +195,7 @@ get_header();
           <!-- Sanur Tab -->
           <div class="tab-pane fade" id="sanur" role="tabpanel" aria-labelledby="sanur-tab">
             <div class="container-fluid px-0">
-              <div class="row g-3 g-lg-4">
+              <div class="row g-3 g-lg-4 justify-content-center">
                 <?php if (have_rows('image_list_sanur')): ?>
                   <?php while (have_rows('image_list_sanur')):
                     the_row();
