@@ -1,5 +1,5 @@
 /*!
-Theme Name: Golden Monkey Ubud Git
+Theme Name: Golden Monkey Bali
 Theme URI: http://underscores.me/
 Author: GAIA Digital Agency
 Author URI: https://gaiada.com
@@ -403,8 +403,9 @@ select,
 optgroup,
 textarea {
   color: #404040;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu,
+    Cantarell, "Helvetica Neue", sans-serif;
   font-size: 1rem;
   line-height: 1.5;
 }
