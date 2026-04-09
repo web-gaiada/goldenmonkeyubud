@@ -39,11 +39,13 @@ $locations = array(
             <ul class="nav nav-pills justify-content-center mb-5" id="locationTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active px-5 py-3 fw-bold text-uppercase rounded-0 border" id="ubud-loc-tab"
-                        data-bs-toggle="pill" data-bs-target="#ubud-loc" type="button" role="tab" aria-controls="ubud-loc" aria-selected="true">Ubud</button>
+                        data-bs-toggle="pill" data-bs-target="#ubud-loc" type="button" role="tab"
+                        aria-controls="ubud-loc" aria-selected="true">Ubud</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link px-5 py-3 fw-bold text-uppercase rounded-0 border" id="sanur-loc-tab"
-                        data-bs-toggle="pill" data-bs-target="#sanur-loc" type="button" role="tab" aria-controls="sanur-loc" aria-selected="false">Sanur</button>
+                        data-bs-toggle="pill" data-bs-target="#sanur-loc" type="button" role="tab"
+                        aria-controls="sanur-loc" aria-selected="false">Sanur</button>
                 </li>
             </ul>
 
@@ -86,14 +88,14 @@ $locations = array(
                             <!-- Left Column: Map -->
                             <div class="col-lg-7 d-flex">
                                 <div class="shadow-sm rounded border overflow-hidden bg-light w-100 map-container">
-                                    <?php 
-                                        $map_iframe = $loc['maps'];
-                                        // Add title attribute to iframe for accessibility if not present
-                                        if (strpos($map_iframe, 'title=') === false) {
-                                            $map_title = 'Google Maps location for ' . esc_attr($loc['title']);
-                                            $map_iframe = str_replace('<iframe', '<iframe title="' . $map_title . '"', $map_iframe);
-                                        }
-                                        echo $map_iframe; 
+                                    <?php
+                                    $map_iframe = $loc['maps'];
+                                    // Add title attribute to iframe for accessibility if not present
+                                    if (strpos($map_iframe, 'title=') === false) {
+                                        $map_title = 'Google Maps location for ' . esc_attr($loc['title']);
+                                        $map_iframe = str_replace('<iframe', '<iframe title="' . $map_title . '"', $map_iframe);
+                                    }
+                                    echo $map_iframe;
                                     ?>
                                 </div>
                             </div>
@@ -182,3 +184,30 @@ $locations = array(
         object-fit: cover;
     }
 </style>
+
+<script>
+    // Script to handle auto-tab from URL parameter
+    document.addEventListener('DOMContentLoaded', function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const loc = urlParams.get('loc');
+
+        if (loc === 'sanur') {
+            const sanurBtn = document.getElementById('sanur-loc');
+            if (sanurBtn && typeof bootstrap !== 'undefined') {
+                const tab = new bootstrap.Tab(sanurBtn);
+                tab.show();
+            } else if (sanurBtn) {
+                sanurBtn.click();
+            }
+        } else if (loc === 'ubud') {
+            const ubudBtn = document.getElementById('ubud-loc');
+            if (ubudBtn && typeof bootstrap !== 'undefined') {
+                const tab = new bootstrap.Tab(ubudBtn);
+                tab.show();
+            } else if (ubudBtn) {
+                ubudBtn.click();
+            }
+        }
+    });
+
+</script>
