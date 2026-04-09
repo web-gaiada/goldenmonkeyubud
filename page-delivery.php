@@ -240,4 +240,29 @@ get_header();
   </div>
 </main>
 
-<?php get_footer();
+<?php get_footer(); ?>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const loc = urlParams.get('loc');
+
+    if (loc === 'sanur') {
+      const sanurBtn = document.getElementById('sanur-tab');
+      if (sanurBtn && typeof bootstrap !== 'undefined') {
+        const tab = new bootstrap.Tab(sanurBtn);
+        tab.show();
+      } else if (sanurBtn) {
+        sanurBtn.click();
+      }
+    } else if (loc === 'ubud') {
+      const ubudBtn = document.getElementById('ubud-tab');
+      if (ubudBtn && typeof bootstrap !== 'undefined') {
+        const tab = new bootstrap.Tab(ubudBtn);
+        tab.show();
+      } else if (ubudBtn) {
+        ubudBtn.click();
+      }
+    }
+  });
+</script>
