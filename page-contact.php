@@ -35,7 +35,8 @@ get_header();
 
             <div class="tab-content" id="contactTabContent">
                 <!-- Ubud Contact Info -->
-                <div class="tab-pane fade show active" id="contact-ubud" role="tabpanel" aria-labelledby="contact-ubud-tab">
+                <div class="tab-pane fade show active" id="contact-ubud" role="tabpanel"
+                    aria-labelledby="contact-ubud-tab">
                     <div class="row gy-4 mb-5">
                         <div class="col-md-6">
                             <div class="card h-100 border-0 shadow-sm bg-light p-4 p-md-5">
@@ -172,6 +173,7 @@ get_header();
         outline-offset: -3px;
         box-shadow: 0 0 0 4px rgba(180, 3, 4, 0.4) !important;
     }
+
     /* Restyling Pesan Error Form (CF7) agar rapi */
     div.wpcf7-response-output {
         margin: 0 0 1.5rem 0 !important;
@@ -199,7 +201,8 @@ get_header();
     }
 
     #contactTabContent .card .mb-4 a.text-dark:hover {
-        color: #b40304 !important; /* Warna identitas brand/Monash Red */
+        color: #b40304 !important;
+        /* Warna identitas brand/Monash Red */
     }
 
     /* Trik agar Input bertipe Number benar-benar identik 100% dengan text (Tanpa panah Spinner) */
@@ -207,6 +210,7 @@ get_header();
         -moz-appearance: textfield !important;
         appearance: textfield !important;
     }
+
     .wpcf7-form input[type="number"]::-webkit-inner-spin-button,
     .wpcf7-form input[type="number"]::-webkit-outer-spin-button {
         -webkit-appearance: none !important;
@@ -225,10 +229,10 @@ get_header();
 
     function moveCf7Response() {
         var forms = document.querySelectorAll('.wpcf7-form');
-        forms.forEach(function(form) {
+        forms.forEach(function (form) {
             var response = form.querySelector('.wpcf7-response-output');
             var submitBtn = form.querySelector('.wpcf7-submit');
-            
+
             if (response && submitBtn) {
                 // Biasanya tombol dibungkus elemen <p> atau <div> dalam WP Editor
                 var parent = submitBtn.parentNode;
@@ -242,26 +246,52 @@ get_header();
     }
 
     // Trik Otomatis untuk menyamakan kelas gaya input tipe "number" / "tel" persis dengan tipe "text"
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         var textInput = document.querySelector('.wpcf7-form input[type="text"], .wpcf7-form input[type="email"]');
         var numberInputs = document.querySelectorAll('.wpcf7-form input[type="number"], .wpcf7-form input[type="tel"]');
-        
+
         if (textInput && numberInputs.length > 0) {
             // Saring dan ambil semua kelas kosmetik (seperti form-control, py-2, bg-light) 
-            var baseClasses = textInput.className.split(' ').filter(function(c) {
+            var baseClasses = textInput.className.split(' ').filter(function (c) {
                 return !c.startsWith('wpcf7');
             }).join(' ');
 
             // Suntikkan kelas yang sama ke tipe angka
-            numberInputs.forEach(function(nInput) {
+            numberInputs.forEach(function (nInput) {
                 nInput.className = nInput.className + ' ' + baseClasses;
                 // Cadangan paksaan seandainya bootstrap border rewel
-                if(!nInput.classList.contains('form-control')) {
+                if (!nInput.classList.contains('form-control')) {
                     nInput.classList.add('form-control');
                 }
             });
         }
     });
+
+
+    // Script to handle auto-tab from URL parameter
+    document.addEventListener('DOMContentLoaded', function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const loc = urlParams.get('loc');
+
+        if (loc === 'sanur') {
+            const sanurBtn = document.getElementById('contact-sanur-tab');
+            if (sanurBtn && typeof bootstrap !== 'undefined') {
+                const tab = new bootstrap.Tab(sanurBtn);
+                tab.show();
+            } else if (sanurBtn) {
+                sanurBtn.click();
+            }
+        } else if (loc === 'ubud') {
+            const ubudBtn = document.getElementById('contact-ubud-tab');
+            if (ubudBtn && typeof bootstrap !== 'undefined') {
+                const tab = new bootstrap.Tab(ubudBtn);
+                tab.show();
+            } else if (ubudBtn) {
+                ubudBtn.click();
+            }
+        }
+    });
+
 </script>
 
 <?php get_template_part('template-parts/footer', 'banner'); ?>
