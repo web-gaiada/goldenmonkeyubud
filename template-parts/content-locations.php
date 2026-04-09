@@ -192,7 +192,7 @@ $locations = array(
         const loc = urlParams.get('loc');
 
         if (loc === 'sanur') {
-            const sanurBtn = document.getElementById('sanur-loc');
+            const sanurBtn = document.getElementById('sanur-loc-tab');
             if (sanurBtn && typeof bootstrap !== 'undefined') {
                 const tab = new bootstrap.Tab(sanurBtn);
                 tab.show();
@@ -200,7 +200,7 @@ $locations = array(
                 sanurBtn.click();
             }
         } else if (loc === 'ubud') {
-            const ubudBtn = document.getElementById('ubud-loc');
+            const ubudBtn = document.getElementById('ubud-loc-tab');
             if (ubudBtn && typeof bootstrap !== 'undefined') {
                 const tab = new bootstrap.Tab(ubudBtn);
                 tab.show();
