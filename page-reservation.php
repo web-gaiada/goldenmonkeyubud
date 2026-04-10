@@ -166,20 +166,44 @@ $map_subtitle = get_field('map_subtitle', 'option');
 
 <script>
     // Script to handle auto-tab from URL parameter
-    document.addEventListener('DOMContentLoaded', function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const loc = urlParams.get('loc');
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     const urlParams = new URLSearchParams(window.location.search);
+    //     const loc = urlParams.get('loc');
 
-        if (loc === 'sanur') {
-            const sanurBtn = document.getElementById('res-sanur-tab');
+    //     if (loc === 'sanur') {
+    //         const sanurBtn = document.getElementById('res-sanur-tab');
+    //         if (sanurBtn && typeof bootstrap !== 'undefined') {
+    //             const tab = new bootstrap.Tab(sanurBtn);
+    //             tab.show();
+    //         } else if (sanurBtn) {
+    //             sanurBtn.click();
+    //         }
+    //     } else if (loc === 'ubud') {
+    //         const ubudBtn = document.getElementById('res-ubud-tab');
+    //         if (ubudBtn && typeof bootstrap !== 'undefined') {
+    //             const tab = new bootstrap.Tab(ubudBtn);
+    //             tab.show();
+    //         } else if (ubudBtn) {
+    //             ubudBtn.click();
+    //         }
+    //     }
+    // });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const url = new URL(window.location)
+        const hash = url.hash
+        const sanurBtn = document.getElementById('res-sanur-tab');
+        const ubudBtn = document.getElementById('res-ubud-tab');
+
+        if (hash === '#sanur') {
             if (sanurBtn && typeof bootstrap !== 'undefined') {
                 const tab = new bootstrap.Tab(sanurBtn);
                 tab.show();
             } else if (sanurBtn) {
                 sanurBtn.click();
             }
-        } else if (loc === 'ubud') {
-            const ubudBtn = document.getElementById('res-ubud-tab');
+            
+        } else if (hash === '#ubud') {
             if (ubudBtn && typeof bootstrap !== 'undefined') {
                 const tab = new bootstrap.Tab(ubudBtn);
                 tab.show();
@@ -187,7 +211,14 @@ $map_subtitle = get_field('map_subtitle', 'option');
                 ubudBtn.click();
             }
         }
-    });
+
+        sanurBtn.addEventListener('click', () => {
+            window.location.hash = '#sanur'
+        })
+        ubudBtn.addEventListener('click', () => {
+            window.location.hash = '#ubud'
+        })
+    })
 </script>
 
 <?php get_template_part('template-parts/footer', 'banner'); ?>

@@ -188,10 +188,12 @@ $locations = array(
 <script>
     // Script to handle auto-tab from URL parameter
     document.addEventListener('DOMContentLoaded', function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const loc = urlParams.get('loc');
+        // const urlParams = new URLSearchParams(window.location.search);
+        // const loc = urlParams.get('loc');
+        const urlParams = new URL(window.location)
+        const loc = urlParams.hash
 
-        if (loc === 'sanur') {
+        if (loc === '#sanur') {
             const sanurBtn = document.getElementById('sanur-loc-tab');
             if (sanurBtn && typeof bootstrap !== 'undefined') {
                 const tab = new bootstrap.Tab(sanurBtn);
@@ -199,7 +201,7 @@ $locations = array(
             } else if (sanurBtn) {
                 sanurBtn.click();
             }
-        } else if (loc === 'ubud') {
+        } else if (loc === '#ubud') {
             const ubudBtn = document.getElementById('ubud-loc-tab');
             if (ubudBtn && typeof bootstrap !== 'undefined') {
                 const tab = new bootstrap.Tab(ubudBtn);

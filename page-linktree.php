@@ -290,10 +290,10 @@
             $wa_link_ubud = 'https://api.whatsapp.com/send/?phone=' . esc_attr($wa_number_ubud) . '&text=' . urlencode($wa_text_ubud);
             ?>
 
-            <a href="<?php echo home_url('/menu/?loc=ubud'); ?>" class="linktree-btn btn-rsvp"><i
+            <a href="<?php echo home_url('/menu/#ubud'); ?>" class="linktree-btn btn-rsvp"><i
                 class="fas fa-utensils"></i><span>Food Menu</span></a>
 
-            <a href="<?php echo home_url('/reservations/?loc=ubud'); ?>" class="linktree-btn btn-rsvp"><i
+            <a href="<?php echo home_url('/reservations/#ubud'); ?>" class="linktree-btn btn-rsvp"><i
                 class="fas fa-calendar-check"></i><span>Reservation</span></a>
 
             <a href="<?php echo esc_url($wa_link_ubud); ?>" target="_blank" class="linktree-btn btn-wa"><i
@@ -327,10 +327,10 @@
             $wa_link_sanur = 'https://api.whatsapp.com/send/?phone=' . esc_attr($wa_number_sanur) . '&text=' . urlencode($wa_text_sanur);
             ?>
 
-            <a href="<?php echo home_url('/menu/?loc=sanur'); ?>" class="linktree-btn btn-rsvp"><i
+            <a href="<?php echo home_url('/menu/#sanur'); ?>" class="linktree-btn btn-rsvp"><i
                 class="fas fa-utensils"></i><span>Food Menu</span></a>
 
-            <a href="<?php echo home_url('/reservations/?loc=sanur'); ?>" class="linktree-btn btn-rsvp"><i
+            <a href="<?php echo home_url('/reservations/#sanur'); ?>" class="linktree-btn btn-rsvp"><i
                 class="fas fa-calendar-check"></i><span>Reservation</span></a>
 
 
