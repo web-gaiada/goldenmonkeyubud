@@ -133,7 +133,7 @@ $map_subtitle = get_field('map_subtitle', 'option');
         const location = url.get('micrositeName')
         if(partySize && bookingId) {
             const data = {
-                event: "purchase",
+                event: "purchase_2",
                 party_size: partySize,
                 transaction_id: bookingId,
                 date,
