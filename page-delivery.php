@@ -250,8 +250,9 @@ get_header();
     const urlParams = new URL(window.location)
     const loc = urlParams.hash
 
+    const sanurBtn = document.getElementById('sanur-tab');
+    const ubudBtn = document.getElementById('ubud-tab');
     if (loc === '#sanur') {
-      const sanurBtn = document.getElementById('sanur-tab');
       if (sanurBtn && typeof bootstrap !== 'undefined') {
         const tab = new bootstrap.Tab(sanurBtn);
         tab.show();
@@ -259,7 +260,6 @@ get_header();
         sanurBtn.click();
       }
     } else if (loc === '#ubud') {
-      const ubudBtn = document.getElementById('ubud-tab');
       if (ubudBtn && typeof bootstrap !== 'undefined') {
         const tab = new bootstrap.Tab(ubudBtn);
         tab.show();
