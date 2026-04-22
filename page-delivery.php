@@ -267,5 +267,12 @@ get_header();
         ubudBtn.click();
       }
     }
+
+    sanurBtn.addEventListener('click', () => {
+        window.location.hash = '#sanur'
+    })
+    ubudBtn.addEventListener('click', () => {
+        window.location.hash = '#ubud'
+    })
   });
 </script>
