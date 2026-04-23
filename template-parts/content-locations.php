@@ -212,4 +212,12 @@ $locations = array(
         }
     });
 
+    // Adding #Ubud or #Sanur to URL when tab is switched for better shareability
+    const locationTab = document.getElementById('locationTab');
+    locationTab.addEventListener('shown.bs.tab', function (event) {
+        const targetId = event.target.getAttribute('data-bs-target');
+        const cleanHash = targetId.replace('-loc', '');
+        history.replaceState(null, null, cleanHash);
+        });
+
 </script>
