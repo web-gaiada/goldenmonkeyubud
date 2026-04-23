@@ -295,6 +295,17 @@ get_header();
         }
     });
 
+    // Adding #Ubud or #Sanur to URL when tab is switched for better shareability
+    const tabButtons = document.querySelectorAll('#contactTab button[data-bs-toggle="pill"]');
+    tabButtons.forEach(button => {
+        button.addEventListener('shown.bs.tab', function (event) {
+            const targetId = event.target.getAttribute('data-bs-target');  
+            const targetHash = targetId.replace('#contact-', '#');
+
+            history.replaceState(null, null, targetHash);
+        });
+    });
+
 </script>
 
 <?php get_template_part('template-parts/footer', 'banner'); ?>

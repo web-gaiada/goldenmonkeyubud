@@ -239,4 +239,13 @@
       });
     });
   });
+
+  // Adding #Ubud or #Sanur to URL when tab is switched for better shareability
+  const menuTab = document.getElementById('menuTab');
+    menuTab.addEventListener('shown.bs.tab', function (event) {
+        const targetId = event.target.getAttribute('data-bs-target');
+        const cleanHash = targetId.replace('-content', '');
+        history.replaceState(null, null, cleanHash);
+    });
+
 </script>

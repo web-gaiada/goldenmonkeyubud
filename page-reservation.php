@@ -19,11 +19,11 @@ $map_subtitle = get_field('map_subtitle', 'option');
 
 <div id="reservations" class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-12 mb-5">
+        <div class="col-12">
             <h3 class="mb-4 text-center fw-bold text-uppercase"><?php the_field('sub_title'); ?></h3>
 
             <!-- Reservation Tabs -->
-            <ul class="nav nav-pills justify-content-center mb-5" id="resTab" role="tablist">
+            <ul class="nav nav-pills justify-content-center" id="resTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active px-5 py-3 fw-bold text-uppercase rounded-0 border" id="res-ubud-tab"
                         data-bs-toggle="pill" data-bs-target="#res-ubud-content" type="button" role="tab"
