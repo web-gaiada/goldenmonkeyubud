@@ -372,6 +372,39 @@
   </div>
 
   <?php wp_footer(); ?>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const sanurBtn = document.getElementById('tab-sanur');
+        const ubudBtn = document.getElementById('tab-ubud');
+
+        const urlParams = new URL(window.location)
+        const hash = urlParams.hash
+
+        if (hash === '#sanur') {
+            if (sanurBtn && typeof bootstrap !== 'undefined') {
+                const tab = new bootstrap.Tab(sanurBtn);
+                tab.show();
+            } else if (sanurBtn) {
+                sanurBtn.click();
+            }
+        } else if (hash === '#ubud') {
+            if (ubudBtn && typeof bootstrap !== 'undefined') {
+                const tab = new bootstrap.Tab(ubudBtn);
+                tab.show();
+            } else if (ubudBtn) {
+                ubudBtn.click();
+            }
+        }
+
+        sanurBtn.addEventListener('click', () => {
+            window.location.hash = '#sanur'
+        })
+        ubudBtn.addEventListener('click', () => {
+            window.location.hash = '#ubud'
+        })
+    })
+  </script>
 </body>
 
 </html>
