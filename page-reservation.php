@@ -48,7 +48,7 @@ $map_subtitle = get_field('map_subtitle', 'option');
                             experience.</p>
 
                         <?php if (get_field('reservation_url_ubud', 'option')): ?>
-                            <div class="reservation-form-container bg-white shadow-sm rounded mb-4 overflow-hidden"> />
+                            <div class="reservation-form-container bg-white shadow-sm rounded mb-4 overflow-hidden">
                                 <iframe src="<?php echo get_field('reservation_url_ubud', 'option'); ?>" frameborder="0"
                                     scrolling="auto" class="resdiary-iframe"
                                     style="width:100%; min-height: 650px; border:none; display: block;"></iframe>
