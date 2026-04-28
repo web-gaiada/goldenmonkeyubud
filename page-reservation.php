@@ -40,7 +40,7 @@ $map_subtitle = get_field('map_subtitle', 'option');
         <div class="col-lg-10">
             <div class="tab-content" id="resTabContent">
                 <!-- Ubud Reservation Content -->
-                <div class="tab-pane fade show active" id="res-ubud-content" role="tabpanel"
+                <div class="tab-pane fade show active rd-widget" id="res-ubud-content" role="tabpanel"
                     aria-labelledby="res-ubud-tab">
                     <div class="card border-0 shadow-sm p-4 p-md-5 bg-light text-center mb-5">
                         <h2 class="fw-bold mb-4">Golden Monkey Ubud Reservation</h2>
@@ -48,7 +48,7 @@ $map_subtitle = get_field('map_subtitle', 'option');
                             experience.</p>
 
                         <?php if (get_field('reservation_url_ubud', 'option')): ?>
-                            <div class="reservation-form-container bg-white shadow-sm rounded mb-4 overflow-hidden">
+                            <div class="reservation-form-container bg-white shadow-sm rounded mb-4 overflow-hidden"> />
                                 <iframe src="<?php echo get_field('reservation_url_ubud', 'option'); ?>" frameborder="0"
                                     scrolling="auto" class="resdiary-iframe"
                                     style="width:100%; min-height: 650px; border:none; display: block;"></iframe>
@@ -78,7 +78,7 @@ $map_subtitle = get_field('map_subtitle', 'option');
                 </div>
 
                 <!-- Sanur Reservation Content -->
-                <div class="tab-pane fade" id="res-sanur-content" role="tabpanel" aria-labelledby="res-sanur-tab">
+                <div class="tab-pane fade rd-widget" id="res-sanur-content" role="tabpanel" aria-labelledby="res-sanur-tab">
                     <div class="card border-0 shadow-sm p-4 p-md-5 bg-light text-center mb-5">
                         <h2 class="fw-bold mb-4">Golden Monkey Sanur Reservation</h2>
                         <p class="mb-5 lead">Experience our signature Cantonese dishes at our vibrant Sanur restaurant.
@@ -94,7 +94,6 @@ $map_subtitle = get_field('map_subtitle', 'option');
                             <div class="alert alert-info">Reservation link for Sanur is not set yet.</div>
                         <?php endif; ?>
                     </div>
-
                     <!-- Map for Sanur -->
                     <div class="mt-5 pt-5 border-top text-center">
                         <h3 class="mb-4 fw-bold"><?php echo $map_title; ?> - Sanur</h3>
@@ -114,6 +113,8 @@ $map_subtitle = get_field('map_subtitle', 'option');
         </div>
     </div>
 </div>
+
+<script type="text/javascript" data-no-optimize="1" src="https://booking.resdiary.com/bundles/WidgetV2Loader.js"></script>
 
 <style>
     #resTab .nav-link {
