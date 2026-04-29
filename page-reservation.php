@@ -49,9 +49,13 @@ $map_subtitle = get_field('map_subtitle', 'option');
 
                         <?php if (get_field('reservation_url_ubud', 'option')): ?>
                             <div class="reservation-form-container bg-white shadow-sm rounded mb-4 overflow-hidden">
-                                <iframe src="<?php echo get_field('reservation_url_ubud', 'option'); ?>" frameborder="0"
+                                <!-- <div id="rd-widget-frame"></div>
+                                <input id="rdwidgeturl" name="rdwidgeturl" type="hidden" value="<?= get_field('reservation_url_ubud', 'option'); ?>" /> -->
+                                <div class="rd-widget-frame"></div>
+                                <input class="rdwidgeturl" name="rdwidgeturl" type="hidden" value="<?= get_field('reservation_url_ubud', 'option'); ?>" />
+                                <!-- <iframe src="<?php echo get_field('reservation_url_ubud', 'option'); ?>" frameborder="0"
                                     scrolling="auto" class="resdiary-iframe"
-                                    style="width:100%; min-height: 650px; border:none; display: block;"></iframe>
+                                    style="width:100%; min-height: 650px; border:none; display: block;"></iframe> -->
                             </div>
                         <?php else: ?>
                             <div class="alert alert-info">Reservation link for Ubud is not set yet.</div>
@@ -86,9 +90,11 @@ $map_subtitle = get_field('map_subtitle', 'option');
 
                         <?php if (get_field('reservation_url_sanur', 'option')): ?>
                             <div class="reservation-form-container bg-white shadow-sm rounded mb-4 overflow-hidden">
-                                <iframe src="<?php echo get_field('reservation_url_sanur', 'option'); ?>" frameborder="0"
+                                <!-- <iframe src="<?php echo get_field('reservation_url_sanur', 'option'); ?>" frameborder="0"
                                     scrolling="auto" class="resdiary-iframe"
-                                    style="width:100%; min-height: 650px; border:none; display: block;"></iframe>
+                                    style="width:100%; min-height: 650px; border:none; display: block;"></iframe> -->
+                                    <div class="rd-widget-frame"></div>
+                                    <input class="rdwidgeturl" name="rdwidgeturl" type="hidden" value="<?= get_field('reservation_url_sanur', 'option'); ?>" />
                             </div>
                         <?php else: ?>
                             <div class="alert alert-info">Reservation link for Sanur is not set yet.</div>
@@ -114,8 +120,7 @@ $map_subtitle = get_field('map_subtitle', 'option');
     </div>
 </div>
 
-<script type="text/javascript" data-no-optimize="1" src="https://booking.resdiary.com/bundles/WidgetV2Loader.js"></script>
-
+<!-- <script type="text/javascript" data-no-optimize="1" src="https://booking.resdiary.com/bundles/WidgetV2Loader.js"></script> -->
 <style>
     #resTab .nav-link {
         color: #000;
@@ -165,61 +170,159 @@ $map_subtitle = get_field('map_subtitle', 'option');
     }
 </style>
 
-<script>
-    // Script to handle auto-tab from URL parameter
-    // document.addEventListener('DOMContentLoaded', function () {
-    //     const urlParams = new URLSearchParams(window.location.search);
-    //     const loc = urlParams.get('loc');
-
-    //     if (loc === 'sanur') {
-    //         const sanurBtn = document.getElementById('res-sanur-tab');
-    //         if (sanurBtn && typeof bootstrap !== 'undefined') {
-    //             const tab = new bootstrap.Tab(sanurBtn);
-    //             tab.show();
-    //         } else if (sanurBtn) {
-    //             sanurBtn.click();
-    //         }
-    //     } else if (loc === 'ubud') {
-    //         const ubudBtn = document.getElementById('res-ubud-tab');
-    //         if (ubudBtn && typeof bootstrap !== 'undefined') {
-    //             const tab = new bootstrap.Tab(ubudBtn);
-    //             tab.show();
-    //         } else if (ubudBtn) {
-    //             ubudBtn.click();
-    //         }
-    //     }
-    // });
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const url = new URL(window.location)
-        const hash = url.hash
+<script id="reservation-logic">
+(function() {
+    function initReservation() {
         const sanurBtn = document.getElementById('res-sanur-tab');
         const ubudBtn = document.getElementById('res-ubud-tab');
+        if (!sanurBtn || !ubudBtn) return;
 
-        if (hash === '#sanur') {
-            if (sanurBtn && typeof bootstrap !== 'undefined') {
-                const tab = new bootstrap.Tab(sanurBtn);
-                tab.show();
-            } else if (sanurBtn) {
-                sanurBtn.click();
+        function loadScript(src, id, callback) {
+            if (document.getElementById(id)) {
+                if (callback) callback();
+                return;
             }
+            const script = document.createElement("script");
+            script.src = src;
+            script.id = id;
+            script.type = "text/javascript";
+            script.onload = callback;
+            document.head.appendChild(script);
+        }
+
+        function waitForJQuery(cb) {
+            if (window.jQuery) cb();
+            else setTimeout(() => waitForJQuery(cb), 50);
+        }
+
+        function waitForJQueryUI(cb) {
+            if (window.jQuery && window.jQuery.ui) cb();
+            else setTimeout(() => waitForJQueryUI(cb), 50);
+        }
+
+        function loadResDiaryWidget(panelId) {
+            const panel = document.querySelector(panelId);
+            if (!panel) return;
+
+            const urlInput = panel.querySelector(".rdwidgeturl");
+            const frame = panel.querySelector(".rd-widget-frame");
+            if (!urlInput || !frame) return;
+
+            // Don't reload if already loaded or loading
+            if (frame.getAttribute('data-loaded') === 'true' || frame.innerHTML.trim() !== "") return;
             
-        } else if (hash === '#ubud') {
-            if (ubudBtn && typeof bootstrap !== 'undefined') {
-                const tab = new bootstrap.Tab(ubudBtn);
-                tab.show();
-            } else if (ubudBtn) {
-                ubudBtn.click();
+            frame.setAttribute('data-loaded', 'true');
+            const url = urlInput.value;
+            const link = document.createElement("a");
+            link.href = url;
+
+            const doLoad = () => {
+                console.log('Loading ResDiary for:', panelId);
+                jQuery(frame).load(url, function(response, status, xhr) {
+                    if (status === "error") {
+                        console.error("ResDiary load error:", xhr.status, xhr.statusText);
+                        frame.removeAttribute('data-loaded');
+                    }
+                });
+            };
+
+            waitForJQuery(() => {
+                if (window.jQuery.ui) {
+                    doLoad();
+                } else {
+                    loadScript(link.origin + "/bundles/jquery-ui.js", "jquiloader", () => {
+                        waitForJQueryUI(doLoad);
+                    });
+                }
+            });
+
+            if (!window.jQuery) {
+                loadScript(link.origin + "/bundles/jquery-core.js", "jqloader");
             }
         }
 
-        sanurBtn.addEventListener('click', () => {
-            window.location.hash = '#sanur'
-        })
-        ubudBtn.addEventListener('click', () => {
-            window.location.hash = '#ubud'
-        })
-    })
+        function unloadResDiaryWidget(panelId) {
+            const panel = document.querySelector(panelId);
+            if (!panel) return;
+            const frame = panel.querySelector(".rd-widget-frame");
+            if (frame) {
+                console.log('Unloading ResDiary for:', panelId);
+                frame.innerHTML = "";
+                frame.removeAttribute('data-loaded');
+            }
+        }
+
+        // Tab event listeners
+        const tabButtons = [sanurBtn, ubudBtn];
+        tabButtons.forEach(btn => {
+            btn.addEventListener('shown.bs.tab', (event) => {
+                const targetId = event.target.getAttribute('data-bs-target');
+                const relatedTargetId = event.relatedTarget ? event.relatedTarget.getAttribute('data-bs-target') : null;
+
+                if (relatedTargetId) {
+                    unloadResDiaryWidget(relatedTargetId);
+                }
+                loadResDiaryWidget(targetId);
+
+                // Update hash
+                const hash = targetId === '#res-sanur-content' ? '#sanur' : '#ubud';
+                if (window.location.hash !== hash) {
+                    history.replaceState(null, null, hash);
+                }
+            });
+
+            btn.addEventListener('click', () => {
+                const targetId = btn.getAttribute('data-bs-target');
+                window.location.hash = targetId === '#res-sanur-content' ? '#sanur' : '#ubud';
+            });
+        });
+
+        // Initial state based on Hash
+        const hash = window.location.hash;
+        let initialBtn = ubudBtn;
+
+        if (hash === '#sanur') {
+            initialBtn = sanurBtn;
+        } else if (hash === '#ubud') {
+            initialBtn = ubudBtn;
+        }
+
+        if (initialBtn) {
+            console.log('Initial setup for:', initialBtn.id);
+            
+            // Handle different Bootstrap versions for tab activation
+            try {
+                if (typeof bootstrap !== 'undefined' && bootstrap.Tab) {
+                    const tabInstance = bootstrap.Tab.getOrCreateInstance ? 
+                        bootstrap.Tab.getOrCreateInstance(initialBtn) : 
+                        new bootstrap.Tab(initialBtn);
+                    tabInstance.show();
+                } else if (window.jQuery && typeof window.jQuery.fn.tab === 'function') {
+                    // Bootstrap 4 / jQuery fallback
+                    window.jQuery(initialBtn).tab('show');
+                } else {
+                    initialBtn.click();
+                }
+            } catch (e) {
+                console.warn('Bootstrap tab init failed, falling back to click:', e);
+                initialBtn.click();
+            }
+            
+            // Explicitly load for initial active tab with a slight delay
+            // to ensure jQuery and other dependencies are fully ready
+            setTimeout(() => {
+                const targetId = initialBtn.getAttribute('data-bs-target');
+                loadResDiaryWidget(targetId);
+            }, 300);
+        }
+    }
+
+    if (document.readyState === 'complete') {
+        initReservation();
+    } else {
+        window.addEventListener('load', initReservation);
+    }
+})();
 </script>
 
 <?php get_template_part('template-parts/footer', 'banner'); ?>
