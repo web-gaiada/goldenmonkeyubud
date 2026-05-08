@@ -152,7 +152,7 @@
               <a target="_blank"
                 href="https://www.tripadvisor.com/Restaurant_Review-g297701-d10915653-Reviews-Golden_Monkey-Ubud_Gianyar_Regency_Bali.html"
                 aria-label="Tripadvisor Award"><img height="90" width="90"
-                  src="https://www.goldenmonkeyubud.com/wp-content/uploads/2022/03/tripadvisor-award-white.webp"
+                  src="<?php bloginfo('template_url'); ?>/images/tripadvisor-award-white.webp"
                   alt="Tripadvisor Award"></a>
             </div>
           </div>
