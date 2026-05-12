@@ -274,10 +274,24 @@
     }
   });
   <?php if (is_front_page() && get_field('popup_title')): ?>
-    $(window).on('load', function () {
+    window.addEventListener('load', function () {
       if (!sessionStorage.getItem('shown-modal')) {
-        $('#GoldenMonkeyOffer').modal('show');
-        sessionStorage.setItem('shown-modal', 'true');
+        var checkBootstrap = setInterval(function () {
+          if (typeof bootstrap !== 'undefined') {
+            clearInterval(checkBootstrap);
+            var modalEl = document.getElementById('GoldenMonkeyOffer');
+            if (modalEl) {
+              var myModal = new bootstrap.Modal(modalEl);
+              myModal.show();
+              sessionStorage.setItem('shown-modal', 'true');
+            }
+          }
+        }, 200);
+
+        // Hentikan pengecekan setelah 10 detik untuk keamanan
+        setTimeout(function () {
+          clearInterval(checkBootstrap);
+        }, 10000);
       }
     });
   <?php endif; ?>
