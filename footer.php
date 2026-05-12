@@ -320,11 +320,11 @@
 
       if (acceptButton && banner && !window.interactedCookie) {
         acceptButton.click(); // Klik tombol "Accept All"
-        console.log('Accept All button clicked');
+        // console.log('Accept All button clicked');
 
         // Tambahkan efek smooth untuk menghilangkan banner
         banner.classList.add('hide'); // Tambahkan class 'hide' untuk animasi
-        console.log('Banner hidden with smooth effect');
+        // console.log('Banner hidden with smooth effect');
       } else {
         console.log('User interacted or elements not found');
       }

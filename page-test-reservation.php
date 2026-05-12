@@ -217,7 +217,7 @@ $map_subtitle = get_field('map_subtitle', 'option');
             link.href = url;
 
             const doLoad = () => {
-                console.log('Loading ResDiary for:', panelId);
+                // console.log('Loading ResDiary for:', panelId);
                 jQuery(frame).load(url, function(response, status, xhr) {
                     if (status === "error") {
                         console.error("ResDiary load error:", xhr.status, xhr.statusText);
@@ -246,7 +246,7 @@ $map_subtitle = get_field('map_subtitle', 'option');
             if (!panel) return;
             const frame = panel.querySelector(".rd-widget-frame");
             if (frame) {
-                console.log('Unloading ResDiary for:', panelId);
+                // console.log('Unloading ResDiary for:', panelId);
                 frame.innerHTML = "";
                 frame.removeAttribute('data-loaded');
             }
@@ -288,7 +288,7 @@ $map_subtitle = get_field('map_subtitle', 'option');
         }
 
         if (initialBtn) {
-            console.log('Initial setup for:', initialBtn.id);
+            // console.log('Initial setup for:', initialBtn.id);
             
             // Handle different Bootstrap versions for tab activation
             try {
