@@ -12,6 +12,7 @@
   <meta charset="<?php bloginfo('charset'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="profile" href="https://gmpg.org/xfn/11">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <?php wp_head(); ?>
   <!-- Google Tag Manager -->
   <script>(function (w, d, s, l, i) {
@@ -235,6 +236,16 @@
         font-size: 1.3rem;
         /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
         padding: 20px 0 !important;
+      }
+
+      /* Active State Mobile */
+      .navbar-collapse.show .current-menu-item > .nav-link,
+      .navbar-collapse.show .current_page_item > .nav-link,
+      .navbar-collapse.show .current-menu-ancestor > .nav-link,
+      .navbar-collapse.show .active > .nav-link,
+      .navbar-collapse.show .nav-link:hover {
+        color: #b40304 !important;
+        font-weight: 800;
       }
 
       /* Adjust Toggler when menu is open */

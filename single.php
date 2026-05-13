@@ -137,6 +137,28 @@ if (has_post_thumbnail()) {
 </div>
 
 <style>
+	/* Horizontal Scroll on Mobile */
+	.entry-content {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
+    }
+    .entry-content a {
+        color: #b40304 !important;
+        text-decoration: underline !important;
+        font-weight: bold;
+        transition: color 0.3s ease;
+        word-break: break-all; 
+    }
+    .entry-content a:hover {
+        color: #111 !important;
+        text-decoration: none !important;
+    }
+    .entry-content ul, .entry-content ol {
+        max-width: 100%;
+        padding-left: 1.5rem;
+	}
+
 	/* Animasi mulus saat area navigasi artikel diseret / dihover */
 	.article-nav-link {
 		transition: background-color 0.3s ease;

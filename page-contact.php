@@ -146,6 +146,32 @@ get_header();
 </div>
 
 <style>
+    /* Same style for Contact Number Input Box */
+    .wpcf7-form input[type="number"] {
+        border: 1px solid #152238;
+        border-radius: 0; 
+        padding: 8px;
+        background-color: #f8f9fa !important;
+        line-height: 1.5;
+        color: #212529 !important;
+        -moz-appearance: textfield !important;
+    }
+    .wpcf7-form input[type="number"]::placeholder {
+        color: #152238;
+        opacity: 1;
+    }
+    .wpcf7-form input[type="number"]:focus {
+        color: #212529;
+        background-color: #fff;
+        border-color: #b40304;
+        outline: 0;
+        box-shadow: none;
+    }
+    .wpcf7-form input[type="number"]:focus::placeholder {
+        color: transparent;
+        transition: color 0.3s ease;
+    }
+    
     #contactTab .nav-link {
         color: #000;
         background-color: #fff;

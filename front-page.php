@@ -17,6 +17,51 @@ get_header();
   href='https://www.goldenmonkeyubud.com/wp-content/plugins/creame-whatsapp-me/public/css/joinchat.min.css?ver=6.0.10'
   media='all' />
 <style>
+  .wpsr-review-content {
+      max-height: 80px;
+      overflow-y: auto;
+      padding-right: 5px;
+      margin-bottom: 10px;
+  }
+  .wpsr-review-content::-webkit-scrollbar {
+      width: 4px;
+  }
+  .wpsr-review-content::-webkit-scrollbar-track {
+      background: #f1f1f1;
+  }
+  .wpsr-review-content::-webkit-scrollbar-thumb {
+      background: #b40304;
+      border-radius: 10px;
+  }
+  .swiper .wpsr-review-template {
+      margin-top: 50px;
+      height: 272px;
+      height: 100% !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #eee;
+  }
+  @media (max-width: 768px) {
+    #mapTabContent .ratio-21x9::before {
+      display: none !important;
+      content: none !important;
+    }
+    #mapTabContent .ratio-21x9 {
+      padding-bottom: 0 !important;
+      height: 500px !important; 
+    }
+    #mapTabContent .ratio-21x9 iframe {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+
   .swiper .wpsr-review-template {
     margin-top: 64px;
     height: 230px;
@@ -256,6 +301,7 @@ endif;
       spaceBetween: 4,
       loop: true,
       autoHeight: false, // Jaga agar tinggi baris slider tetap seragam
+      alignItems: 'stretch',
       pagination: {
         el: '.swiper-pagination',
         clickable: true

@@ -122,6 +122,27 @@ $map_subtitle = get_field('map_subtitle', 'option');
 
 <!-- <script type="text/javascript" data-no-optimize="1" src="https://booking.resdiary.com/bundles/WidgetV2Loader.js"></script> -->
 <style>
+    /* Map Height on Mobile */
+    @media (max-width: 768px) {
+        #resTabContent .ratio.ratio-21x9::before {
+            display: none;
+            content: none;
+            padding-top: 0;
+        }
+        #resTabContent .ratio.ratio-21x9 {
+            height: 500px;
+            min-height: 500px;
+            padding-bottom: 0;
+        }
+        #resTabContent .ratio.ratio-21x9 iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
     #resTab .nav-link {
         color: #000;
         background-color: #fff;

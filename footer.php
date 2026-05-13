@@ -9,8 +9,137 @@
  * @package goldenmonkey
  */
 
+// WA Float Button
+$wa_number_ubud = get_field('whatsapp_number_ubud', 'option');
+$wa_text_ubud   = get_field('whatsapp_text_ubud', 'option');
+$wa_number_sanur = get_field('whatsapp_number_sanur', 'option');
+$wa_text_sanur   = get_field('whatsapp_text_sanur', 'option');
+$link_ubud = 'https://api.whatsapp.com/send/?phone=' . esc_attr($wa_number_ubud) . '&text=' . urlencode($wa_text_ubud);
+$link_sanur = 'https://api.whatsapp.com/send/?phone=' . esc_attr($wa_number_sanur) . '&text=' . urlencode($wa_text_sanur);
+
 ?>
+
+<div class="gmb-wa-container">
+    <div class="gmb-wa-menu" id="waMenu">
+        <a href="<?php echo esc_url($link_ubud); ?>" target="_blank" class="gmb-wa-item">
+            <i class="fa-brands fa-whatsapp"></i> Golden Monkey Ubud
+        </a>
+        <a href="<?php echo esc_url($link_sanur); ?>" target="_blank" class="gmb-wa-item">
+            <i class="fa-brands fa-whatsapp"></i> Golden Monkey Sanur
+        </a>
+    </div>
+
+    <button class="gmb-wa-float" id="gmbWaBtn" title="WhatsApp Us">
+        <i class="fab fa-whatsapp"></i>
+    </button>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById("gmbWaBtn");
+    const menu = document.getElementById("waMenu");
+    const container = document.querySelector(".gmb-wa-container");
+    if (!btn || !menu) return;
+    const closeMenu = () => {
+        menu.classList.remove("show");
+    };
+    const openMenu = () => {
+        menu.classList.add("show");
+    };
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const isOpen = menu.classList.contains("show");
+        
+        if (isOpen) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    });
+    document.addEventListener('click', function(e) {
+        if (menu.classList.contains("show") && !container.contains(e.target)) {
+            closeMenu();
+        }
+    });
+    menu.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+});
+</script>
+
 <style>
+  /* WhatsApp Float Button */
+  .gmb-wa-container {
+		position: fixed;
+		bottom: 14px;
+		right: 24px;
+		z-index: 9999;
+	}
+	.gmb-wa-float {
+		width: 60px;
+		height: 60px;
+		background-color: #25D366;
+		color: #fff;
+		border-radius: 50%;
+		justify-content: center;
+		align-items: center;
+		font-size: 30px;
+		box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+		border: none;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+	}
+	.gmb-wa-float:hover {
+		background-color: #128C7E;
+	}
+	.gmb-wa-menu {
+		position: absolute;
+		bottom: 75px;
+		right: 0;
+		width: 220px;
+		background: #fff;
+		border-radius: 12px;
+		box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+		display: none;
+		overflow: hidden;
+		border: 1px solid #f0f0f0;
+	}
+	.gmb-wa-menu.show {
+		display: block;
+	}
+	.gmb-wa-item {
+		display: block;
+		padding: 15px;
+		color: #333;
+		font-weight: 600;
+		font-size: 14px;
+		border-bottom: 1px solid #f7f7f7;
+		transition: background-color 0.2s ease;
+	}
+	.gmb-wa-item:last-child {
+		border-bottom: none;
+	}
+	.gmb-wa-item i {
+		color: #25D366;
+		margin-right: 8px;
+	}
+	.gmb-wa-item:hover {
+		background-color: #f1f1f1;
+		color: #333;
+	}
+
+  .gda-cta:hover {
+    text-decoration: underline;
+  }
+  .mt-2 a img {
+    transition: transform 0.3s ease;
+  }
+  .mt-2 a img:hover {
+    transform: translateY(-5px);
+  }
+
   .btn-outline-light:hover {
     background-color: #ffffff !important;
     color: #b40304 !important;
@@ -169,8 +298,8 @@
     <div class="row">
       <div class="col-12">
         <div class="px-4 px-lg-0 text-center text-md-start">
-          &copy; <?php bloginfo('name'); ?> <?php echo date('Y'); ?>. <a href="https://www.gaiada.com/" target="_blank"
-            aria-label="Developed by Gaia Digital Agency" style="color:#000">Developed by Gaia Digital Agency.</a></div>
+          &copy; <?php bloginfo('name'); ?> <?php echo date('Y'); ?>. Developed by <a class="gda-cta" href="https://www.gaiada.com/" target="_blank"
+            aria-label="Developed by Gaia Digital Agency" style="color:#000">Gaia Digital Agency.</a></div>
       </div>
     </div>
   </div>
