@@ -179,6 +179,11 @@ document.addEventListener('DOMContentLoaded', function() {
     font-weight: bold !important;
     text-decoration: underline !important;
   }
+  .title-footer {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 7.5px;
+  }
 </style>
 
 <div class="bg-footer text-white white-link" style="background-color: #6f0100 !important;">
@@ -188,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="row gy-5 gy-md-0">
           <!-- Ubud Location -->
           <div class="col-12 col-md-6 mb-4 mb-md-0">
-            <h4 class="text-white title-footer">Golden Monkey Ubud</h4>
+            <p class="text-white title-footer">Golden Monkey Ubud</p>
             <div class="pe-md-4 address-text">
               <a href="<?php echo esc_url(get_field('google_maps_url_ubud', 'option')); ?>" target="_blank"
                 class="footer-address-link text-white text-decoration-none d-block">
@@ -221,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
           <!-- Sanur Location -->
           <div class="col-12 col-md-6">
-            <h4 class="text-white title-footer">Golden Monkey Sanur</h4>
+            <p class="text-white title-footer">Golden Monkey Sanur</p>
             <div class="address-text">
               <a href="<?php echo esc_url(get_field('google_maps_url_sanur', 'option')); ?>" target="_blank"
                 class="footer-address-link text-white text-decoration-none d-block">
@@ -252,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       <div class="col-12 col-lg-4 footer-certificates">
         <div class="px-lg-4">
-          <h4 class="text-white title-footer text-center text-lg-start mb-4">Follow Us</h4>
+          <p class="text-white title-footer text-center text-lg-start mb-4">Follow Us</p>
           <ul class="list-inline list-social mb-4 text-center text-lg-start">
             <li class="list-inline-item">
               <a href="https://www.instagram.com/goldenmonkeyrestaurant/" target="_blank" aria-label="Instagram">
