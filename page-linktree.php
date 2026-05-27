@@ -357,8 +357,8 @@
 
     <footer class="linktree-footer">
       <div class="footer-socials">
-        <a href="https://instagram.com/goldenmonkeyubud" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://facebook.com/goldenmonkeyubud" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/goldenmonkeyrestaurant/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/goldenmonkeyrestaurant/" target="_blank"><i class="fab fa-facebook"></i></a>
         <a href="<?php echo home_url('/'); ?>"><i class="fas fa-globe"></i></a>
       </div>
       <div class="footer-copyright">
