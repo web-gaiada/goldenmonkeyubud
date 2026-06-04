@@ -260,12 +260,12 @@ get_header();
             var submitBtn = form.querySelector('.wpcf7-submit');
 
             if (response && submitBtn) {
-                // Biasanya tombol dibungkus elemen <p> atau <div> dalam WP Editor
-                var parent = submitBtn.parentNode;
-                if (parent && parent.className !== 'wpcf7-form') {
-                    form.insertBefore(response, parent);
+                var wrapper = submitBtn.parentNode;
+                
+                if (wrapper && wrapper !== form) {
+                    wrapper.before(response);
                 } else {
-                    form.insertBefore(response, submitBtn);
+                    submitBtn.before(response);
                 }
             }
         });
