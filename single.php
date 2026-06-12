@@ -52,7 +52,7 @@ if (has_post_thumbnail()) {
 			?>
 			<div class="col-12 col-lg-4">
 				<div class="sticky-top recent-post">
-					<h4 class="normal-text fw-bold pb-4 px-2 px-lg-0">GOLDEN MONKEY NEWS</h4>
+					<h3 class="normal-text fw-bold pb-4 px-2 px-lg-0" style="font-size: 18px;">GOLDEN MONKEY NEWS</h3>
 					<?php
 					$args = array(
 						'orderby' => 'rand',
