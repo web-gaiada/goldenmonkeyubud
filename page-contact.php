@@ -242,6 +242,21 @@ get_header();
         -webkit-appearance: none !important;
         margin: 0 !important;
     }
+    /* Styling for Submit Button Normal State */
+    body div.wpcf7 input[type="submit"].wpcf7-submit {
+        background-color: #b40304 !important;
+        background: #b40304 !important;
+        color: #fff !important;
+        border: 1px solid #b40304 !important;
+        transition: all 0.3s ease !important;
+    }
+    /* Styling for Submit Button Hover State */
+    body div.wpcf7 input[type="submit"].wpcf7-submit:hover {
+        background-color: #fff !important;
+        background: #fff !important;
+        color: #b40304 !important;
+        border-color: #b40304 !important;
+    }
 </style>
 
 <script>
