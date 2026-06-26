@@ -120,9 +120,9 @@ $news_subtitle = get_field('header_news_sub_title', 'option') ?: strip_tags(get_
 
   /* Hover State */
   .pagination .page-numbers:hover:not(.current):not(.dots) {
-    background-color: #111;
+    background-color: #b40304;
     color: #fff;
-    border-color: #111;
+    border-color: #b40304;
   }
 
   /* Next & Previous Icons Styling */
